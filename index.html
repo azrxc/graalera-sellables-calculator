@@ -214,6 +214,9 @@
             padding: 8px;
             border-bottom: 1px solid #ddd;
             transition: border-color 0.5s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         body.dark-mode .saved-data li {
@@ -221,6 +224,70 @@
         }
 
         .saved-data li:last-child {
+            border-bottom: none;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        /* Leaderboard Section */
+        .leaderboard {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .leaderboard {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .leaderboard h3 {
+            margin-top: 0;
+            color: #007BFF;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .leaderboard h3 {
+            color: #1e90ff;
+        }
+
+        .leaderboard ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .leaderboard li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.5s;
+        }
+
+        body.dark-mode .leaderboard li {
+            border-color: #444;
+        }
+
+        .leaderboard li:last-child {
             border-bottom: none;
         }
 
@@ -321,10 +388,37 @@
     </div>
     
     <!-- Buttons for guidance, reset, dark mode, and save -->
-    <button class="guidance-btn" onclick="toggleGuidance()">Show/Hide Sellables Price</button>
+    <button class="guidance-btn" onclick="toggleGuidance()">Sellables Price</button>
     <button class="reset-btn" onclick="resetCalculator()">Reset</button>
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
     <button class="save-btn" onclick="saveData()">Save Data</button>
+    
+    <!-- Guidance Box -->
+    <div class="guidance-box" id="guidanceBox">
+        <h3>Sellables Price</h3>
+        <ul>
+            <li><strong>Shells:</strong></li>
+            <li>$3: Tro, Aero</li>
+            <li>$5: Sand, Scall</li>
+            <li>$6: Crab Shells</li>
+            <li>$7: Starfish</li>
+            <li><strong>Minerals:</strong></li>
+            <li>$5: Other Minerals</li>
+            <li>$7: Ruby, Sapphire</li>
+            <li>$8: Emerald</li>
+            <li>$10: Gold, Diamond</li>
+            <li><strong>Mushrooms:</strong></li>
+            <li>$5: Mush</li>
+            <li><strong>Trash:</strong></li>
+            <li>$4: Papers</li>
+            <li>$5: Bottle</li>
+            <li>$6: Tire</li>
+            <li><strong>Body Parts:</strong></li>
+            <li>$3: Bone, Foot, Hand</li>
+            <li>$4: Eyes</li>
+            <li>$5: Brain, Heart</li>
+        </ul>
+    </div>
     
     <!-- Saved Data Section -->
     <div class="saved-data">
@@ -332,9 +426,15 @@
         <ul id="savedDataList"></ul>
     </div>
     
+    <!-- Leaderboard Section -->
+    <div class="leaderboard">
+        <h3>Leaderboard</h3>
+        <ul id="leaderboardList"></ul>
+    </div>
+    
     <p style="margin-top: 30px; font-size: 14px; color: gray;">&copy; 2025 azrxc. All rights reserved.</p>
     <p class="footer-links">
-        <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
     </p>
     
     <script>
@@ -359,6 +459,9 @@
             
             let ratio = parseFloat(document.getElementById("ratio").value);
             document.getElementById("totalTrochus").textContent = ratio >= 3.0 && ratio <= 5.0 ? (totalGralats / ratio).toFixed(2) : "Invalid Ratio";
+            
+            // Update streak
+            updateStreak();
         }
 
         // Toggle guidance box
@@ -415,12 +518,65 @@
             savedData.forEach((data, index) => {
                 let li = document.createElement("li");
                 li.textContent = `Entry ${index + 1}: Sellables - ${data.sellables}, Gralats - ${data.gralats}, Trochus - ${data.trochus}, Ratio - ${data.ratio}`;
+                
+                // Add delete button
+                let deleteBtn = document.createElement("button");
+                deleteBtn.className = "delete-btn";
+                deleteBtn.textContent = "x";
+                deleteBtn.onclick = () => deleteEntry(index);
+                
+                li.appendChild(deleteBtn);
                 savedDataList.appendChild(li);
             });
         }
 
-        // Load saved data on page load
+        // Delete saved data entry
+        function deleteEntry(index) {
+            let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
+            savedData.splice(index, 1);
+            localStorage.setItem("savedData", JSON.stringify(savedData));
+            displaySavedData();
+        }
+
+        // Streak System
+        let streakData = JSON.parse(localStorage.getItem("streakData")) || { lastUsed: null, streak: 0 };
+
+        function updateStreak() {
+            const today = new Date().toDateString();
+            if (streakData.lastUsed !== today) {
+                streakData.streak++;
+                streakData.lastUsed = today;
+                localStorage.setItem("streakData", JSON.stringify(streakData));
+            }
+            updateLeaderboard();
+        }
+
+        // Leaderboard
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+        function updateLeaderboard() {
+            const username = prompt("Enter your name to be added to the leaderboard:");
+            if (username) {
+                leaderboard.push({ name: username, streak: streakData.streak });
+                leaderboard.sort((a, b) => b.streak - a.streak);
+                localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+                displayLeaderboard();
+            }
+        }
+
+        function displayLeaderboard() {
+            let leaderboardList = document.getElementById("leaderboardList");
+            leaderboardList.innerHTML = "";
+            leaderboard.forEach((entry, index) => {
+                let li = document.createElement("li");
+                li.textContent = `${index + 1}. ${entry.name} - ${entry.streak} days`;
+                leaderboardList.appendChild(li);
+            });
+        }
+
+        // Load saved data and leaderboard on page load
         displaySavedData();
+        displayLeaderboard();
     </script>
 </body>
 </html>
