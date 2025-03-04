@@ -409,6 +409,130 @@
             background: #1e90ff;
         }
 
+        /* Chat Section */
+        .chat {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .chat {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .chat h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .chat h3 {
+            color: #1e90ff;
+        }
+
+        .chat ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .chat li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.5s;
+        }
+
+        body.dark-mode .chat li {
+            border-color: #444;
+        }
+
+        .chat li:last-child {
+            border-bottom: none;
+        }
+
+        .chat li .timestamp {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        body.dark-mode .chat li .timestamp {
+            color: #aaa;
+        }
+
+        .chat input {
+            width: calc(100% - 90px);
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            margin-right: 10px;
+        }
+
+        body.dark-mode .chat input {
+            background: #444;
+            color: #f4f4f4;
+            border-color: #666;
+        }
+
+        .chat button {
+            background-color: #007BFF;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .chat button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Essay Section */
+        .essay {
+            margin: 20px auto;
+            max-width: 800px;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .essay {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .essay h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .essay h3 {
+            color: #1e90ff;
+        }
+
+        .essay p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        body.dark-mode .essay p {
+            color: #ddd;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -609,6 +733,28 @@
         <ul id="achievementsList"></ul>
     </div>
     
+    <!-- Chat Section -->
+    <div class="chat">
+        <h3>Chat</h3>
+        <ul id="chatList"></ul>
+        <input type="text" id="chatInput" placeholder="Type your message..." disabled>
+        <button id="chatSend" onclick="sendMessage()" disabled>Send</button>
+    </div>
+    
+    <!-- Essay Section -->
+    <div class="essay">
+        <h3>About This Website</h3>
+        <p>
+            Welcome to the Sellables to Trochus Calculator! This tool is designed to help you calculate the value of your sellable items in Gralats and convert them into Trochus based on a customizable ratio. Whether you're a seasoned trader or just starting out, this calculator simplifies the process of managing your in-game economy.
+        </p>
+        <p>
+            Our mission is to provide a seamless and user-friendly experience for players to track their progress, compete on the leaderboard, and achieve milestones through streaks. The chat feature is available for experienced users with a 30+ day streak, fostering a community of dedicated players.
+        </p>
+        <p>
+            Thank you for using our calculator, and we hope it enhances your gaming experience!
+        </p>
+    </div>
+    
     <p style="margin-top: 30px; font-size: 14px; color: gray;">&copy; 2025 azrxc. All rights reserved.</p>
     <p class="footer-links">
         <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
@@ -618,6 +764,7 @@
         // Initialize user data
         let userData = JSON.parse(localStorage.getItem("userData")) || { name: null, streak: 0, lastUsed: null };
         let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+        let chatMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
 
         // Ask for user's name if not already set
         if (!userData.name) {
@@ -735,6 +882,7 @@
                 updateLeaderboard();
                 updateAchievements();
                 updateProgressBar();
+                updateChatAccess();
             }
         }
 
@@ -789,11 +937,52 @@
             progressBar.style.width = `${progress}%`;
         }
 
-        // Load saved data, leaderboard, and achievements on page load
+        // Chat Access
+        function updateChatAccess() {
+            const chatInput = document.getElementById("chatInput");
+            const chatSend = document.getElementById("chatSend");
+            if (userData.streak >= 30) {
+                chatInput.disabled = false;
+                chatSend.disabled = false;
+            } else {
+                chatInput.disabled = true;
+                chatSend.disabled = true;
+            }
+        }
+
+        // Chat System
+        function sendMessage() {
+            const chatInput = document.getElementById("chatInput");
+            const message = chatInput.value.trim();
+            if (message) {
+                const timestamp = new Date().toLocaleTimeString();
+                chatMessages.push({ name: userData.name, message, timestamp });
+                if (chatMessages.length > 10) {
+                    chatMessages.shift(); // Remove oldest message
+                }
+                localStorage.setItem("chatMessages", JSON.stringify(chatMessages));
+                displayChat();
+                chatInput.value = "";
+            }
+        }
+
+        function displayChat() {
+            const chatList = document.getElementById("chatList");
+            chatList.innerHTML = "";
+            chatMessages.forEach(msg => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>${msg.name}</strong>: ${msg.message} <span class="timestamp">${msg.timestamp}</span>`;
+                chatList.appendChild(li);
+            });
+        }
+
+        // Load saved data, leaderboard, achievements, and chat on page load
         displaySavedData();
         displayLeaderboard();
         updateAchievements();
         updateProgressBar();
+        updateChatAccess();
+        displayChat();
     </script>
 </body>
 </html>
