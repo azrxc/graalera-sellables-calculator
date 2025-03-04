@@ -178,116 +178,66 @@
             background-color: #218838;
         }
 
-        /* Saved Data Section */
-        .saved-data {
+        /* Guidance Box */
+        .guidance-box {
+            display: none;
             margin: 20px auto;
             max-width: 600px;
             text-align: left;
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
             transition: background 0.5s, box-shadow 0.5s;
         }
 
-        body.dark-mode .saved-data {
+        body.dark-mode .guidance-box {
             background: #2c2c2c;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
         }
 
-        .saved-data h3 {
+        .guidance-box h3 {
             margin-top: 0;
             color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
             transition: color 0.5s;
         }
 
-        body.dark-mode .saved-data h3 {
+        body.dark-mode .guidance-box h3 {
             color: #1e90ff;
         }
 
-        .saved-data ul {
-            list-style-type: none;
-            padding: 0;
+        .guidance-box table {
+            width: 100%;
+            margin: 0;
+            background: transparent;
+            box-shadow: none;
         }
 
-        .saved-data li {
-            padding: 8px;
-            border-bottom: 1px solid #ddd;
-            transition: border-color 0.5s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        body.dark-mode .saved-data li {
-            border-color: #444;
-        }
-
-        .saved-data li:last-child {
-            border-bottom: none;
-        }
-
-        .delete-btn {
-            background-color: #dc3545;
+        .guidance-box th {
+            background: #007BFF;
             color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
+            font-size: 1.1rem;
+            padding: 10px;
         }
 
-        .delete-btn:hover {
-            background-color: #c82333;
+        body.dark-mode .guidance-box th {
+            background: #1e90ff;
         }
 
-        /* Leaderboard Section */
-        .leaderboard {
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .leaderboard {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
-        }
-
-        .leaderboard h3 {
-            margin-top: 0;
-            color: #007BFF;
-            transition: color 0.5s;
-        }
-
-        body.dark-mode .leaderboard h3 {
-            color: #1e90ff;
-        }
-
-        .leaderboard ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .leaderboard li {
-            padding: 8px;
+        .guidance-box td {
+            padding: 10px;
             border-bottom: 1px solid #ddd;
-            transition: border-color 0.5s;
+            font-size: 1rem;
         }
 
-        body.dark-mode .leaderboard li {
+        body.dark-mode .guidance-box td {
             border-color: #444;
         }
 
-        .leaderboard li:last-child {
+        .guidance-box tr:last-child td {
             border-bottom: none;
         }
 
@@ -395,29 +345,79 @@
     
     <!-- Guidance Box -->
     <div class="guidance-box" id="guidanceBox">
-        <h3>Sellables Price</h3>
-        <ul>
-            <li><strong>Shells:</strong></li>
-            <li>$3: Tro, Aero</li>
-            <li>$5: Sand, Scall</li>
-            <li>$6: Crab Shells</li>
-            <li>$7: Starfish</li>
-            <li><strong>Minerals:</strong></li>
-            <li>$5: Other Minerals</li>
-            <li>$7: Ruby, Sapphire</li>
-            <li>$8: Emerald</li>
-            <li>$10: Gold, Diamond</li>
-            <li><strong>Mushrooms:</strong></li>
-            <li>$5: Mush</li>
-            <li><strong>Trash:</strong></li>
-            <li>$4: Papers</li>
-            <li>$5: Bottle</li>
-            <li>$6: Tire</li>
-            <li><strong>Body Parts:</strong></li>
-            <li>$3: Bone, Foot, Hand</li>
-            <li>$4: Eyes</li>
-            <li>$5: Brain, Heart</li>
-        </ul>
+        <h3>Sellables Price Guide</h3>
+        <table>
+            <tr>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Items</th>
+            </tr>
+            <tr>
+                <td rowspan="4">Shells</td>
+                <td>$3</td>
+                <td>Tro, Aero</td>
+            </tr>
+            <tr>
+                <td>$5</td>
+                <td>Sand, Scall</td>
+            </tr>
+            <tr>
+                <td>$6</td>
+                <td>Crab Shells</td>
+            </tr>
+            <tr>
+                <td>$7</td>
+                <td>Starfish</td>
+            </tr>
+            <tr>
+                <td rowspan="4">Minerals</td>
+                <td>$5</td>
+                <td>Other Minerals</td>
+            </tr>
+            <tr>
+                <td>$7</td>
+                <td>Ruby, Sapphire</td>
+            </tr>
+            <tr>
+                <td>$8</td>
+                <td>Emerald</td>
+            </tr>
+            <tr>
+                <td>$10</td>
+                <td>Gold, Diamond</td>
+            </tr>
+            <tr>
+                <td>Mushrooms</td>
+                <td>$5</td>
+                <td>Mush</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Trash</td>
+                <td>$4</td>
+                <td>Papers</td>
+            </tr>
+            <tr>
+                <td>$5</td>
+                <td>Bottle</td>
+            </tr>
+            <tr>
+                <td>$6</td>
+                <td>Tire</td>
+            </tr>
+            <tr>
+                <td rowspan="3">Body Parts</td>
+                <td>$3</td>
+                <td>Bone, Foot, Hand</td>
+            </tr>
+            <tr>
+                <td>$4</td>
+                <td>Eyes</td>
+            </tr>
+            <tr>
+                <td>$5</td>
+                <td>Brain, Heart</td>
+            </tr>
+        </table>
     </div>
     
     <!-- Saved Data Section -->
