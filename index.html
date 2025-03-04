@@ -6,17 +6,234 @@
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background-color: #f4f4f4; }
-        table { margin: 20px auto; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
-        th, td { padding: 10px; border: 1px solid black; text-align: center; }
-        input { width: 80px; text-align: center; }
-        .totals-container { display: flex; justify-content: center; gap: 20px; margin-top: 20px; }
-        .total-box { background: white; padding: 15px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); }
-        .total-box h3 { margin: 0; font-size: 18px; color: #333; }
-        .total-box span { font-size: 22px; font-weight: bold; color: #007BFF; }
-        .guidance-box { background: white; padding: 15px; border-radius: 8px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); margin-top: 20px; text-align: left; max-width: 500px; margin-left: auto; margin-right: auto; display: none; }
-        .guidance-btn { background-color: #007BFF; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 60px; } /* Added margin-top to create more space above button */
-        .guidance-btn:hover { background-color: #0056b3; }
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 2rem;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        /* Table Styles */
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode table {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        th {
+            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            color: white;
+            font-weight: bold;
+        }
+
+        body.dark-mode th {
+            background: linear-gradient(135deg, #1e90ff, #00bfff);
+        }
+
+        td {
+            border-bottom: 1px solid #ddd;
+        }
+
+        body.dark-mode td {
+            border-color: #444;
+        }
+
+        tr:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+            transition: background-color 0.3s;
+        }
+
+        body.dark-mode tr:hover {
+            background-color: rgba(30, 144, 255, 0.1);
+        }
+
+        input {
+            width: 80px;
+            text-align: center;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s, background 0.5s, color 0.5s;
+        }
+
+        body.dark-mode input {
+            background: #444;
+            color: #f4f4f4;
+            border-color: #666;
+        }
+
+        /* Totals Container */
+        .totals-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .total-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .total-box {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .total-box h3 {
+            margin: 0;
+            font-size: 18px;
+            color: #333;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .total-box h3 {
+            color: #f4f4f4;
+        }
+
+        .total-box span {
+            font-size: 22px;
+            font-weight: bold;
+            color: #007BFF;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .total-box span {
+            color: #1e90ff;
+        }
+
+        /* Buttons */
+        .guidance-btn, .reset-btn, .dark-mode-btn, .save-btn {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 60px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .guidance-btn:hover, .reset-btn:hover, .dark-mode-btn:hover, .save-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .reset-btn {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+
+        .reset-btn:hover {
+            background-color: #c82333;
+        }
+
+        .dark-mode-btn {
+            background-color: #333;
+            margin-left: 10px;
+        }
+
+        body.dark-mode .dark-mode-btn {
+            background-color: #555;
+        }
+
+        .save-btn {
+            background-color: #28a745;
+            margin-left: 10px;
+        }
+
+        .save-btn:hover {
+            background-color: #218838;
+        }
+
+        /* Saved Data Section */
+        .saved-data {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .saved-data {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .saved-data h3 {
+            margin-top: 0;
+            color: #007BFF;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .saved-data h3 {
+            color: #1e90ff;
+        }
+
+        .saved-data ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .saved-data li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.5s;
+        }
+
+        body.dark-mode .saved-data li {
+            border-color: #444;
+        }
+
+        .saved-data li:last-child {
+            border-bottom: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -103,16 +320,16 @@
         </div>
     </div>
     
-    <!-- Button to toggle guidance visibility -->
+    <!-- Buttons for guidance, reset, dark mode, and save -->
     <button class="guidance-btn" onclick="toggleGuidance()">Show/Hide Sellables Price</button>
+    <button class="reset-btn" onclick="resetCalculator()">Reset</button>
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <button class="save-btn" onclick="saveData()">Save Data</button>
     
-    <div class="guidance-box" id="guidanceBox">
-        <h3>Sellables Price</h3>
-        <p><strong>Shells</strong><br> $3: Tro, Aero<br> $5: Sand, Scall<br> $6: Crab Shells<br> $7: Starfish</p>
-        <p><strong>Minerals</strong><br> $5: Other Minerals<br> $7: Ruby, Sapphire<br> $8: Emerald<br> $10: Gold, Diamond</p>
-        <p><strong>Mushrooms</strong><br> $5: Mush</p>
-        <p><strong>Trash</strong><br> $4: Papers<br> $5: Bottle<br> $6: Tire</p>
-        <p><strong>Body Parts</strong><br> $3: Bone, Foot, Hand<br> $4: Eyes<br> $5: Brain, Heart</p>
+    <!-- Saved Data Section -->
+    <div class="saved-data">
+        <h3>Saved Data</h3>
+        <ul id="savedDataList"></ul>
     </div>
     
     <p style="margin-top: 30px; font-size: 14px; color: gray;">&copy; 2025 azrxc. All rights reserved.</p>
@@ -121,6 +338,7 @@
     </p>
     
     <script>
+        // Calculate function
         function calculate() {
             let prices = { 3: ["s3", "b3"], 4: ["t4", "b4"], 5: ["s5", "m5", "mu5", "t5", "b5"], 6: ["s6", "t6"], 7: ["s7", "m7"], 8: ["m8"], 10: ["m10"] };
             let totalSellables = 0;
@@ -143,17 +361,66 @@
             document.getElementById("totalTrochus").textContent = ratio >= 3.0 && ratio <= 5.0 ? (totalGralats / ratio).toFixed(2) : "Invalid Ratio";
         }
 
+        // Toggle guidance box
         function toggleGuidance() {
             let guidanceBox = document.getElementById("guidanceBox");
             if (guidanceBox.style.display === "none" || guidanceBox.style.display === "") {
                 guidanceBox.style.display = "block";
             } else {
                 guidanceBox.style.display = "none";
-
             }
         }
-        
 
+        // Reset calculator
+        function resetCalculator() {
+            document.querySelectorAll("input[type='number']").forEach(input => {
+                if (input.id !== "ratio") {
+                    input.value = "";
+                }
+            });
+            document.getElementById("totalSellables").textContent = "0";
+            document.getElementById("totalGralats").textContent = "0";
+            document.getElementById("totalTrochus").textContent = "0";
+        }
+
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Save data
+        function saveData() {
+            let data = {
+                sellables: document.getElementById("totalSellables").textContent,
+                gralats: document.getElementById("totalGralats").textContent,
+                trochus: document.getElementById("totalTrochus").textContent,
+                ratio: document.getElementById("ratio").value
+            };
+
+            // Save to localStorage
+            let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
+            savedData.push(data);
+            localStorage.setItem("savedData", JSON.stringify(savedData));
+
+            // Update saved data list
+            displaySavedData();
+        }
+
+        // Display saved data
+        function displaySavedData() {
+            let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
+            let savedDataList = document.getElementById("savedDataList");
+            savedDataList.innerHTML = "";
+
+            savedData.forEach((data, index) => {
+                let li = document.createElement("li");
+                li.textContent = `Entry ${index + 1}: Sellables - ${data.sellables}, Gralats - ${data.gralats}, Trochus - ${data.trochus}, Ratio - ${data.ratio}`;
+                savedDataList.appendChild(li);
+            });
+        }
+
+        // Load saved data on page load
+        displaySavedData();
     </script>
 </body>
 </html>
