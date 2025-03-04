@@ -8,11 +8,13 @@
     <style>
         /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             background-color: #f4f4f4;
             color: #333;
             transition: background-color 0.5s, color 0.5s;
+            margin: 0;
+            padding: 0;
         }
 
         body.dark-mode {
@@ -22,8 +24,13 @@
 
         h2 {
             margin-top: 20px;
-            font-size: 2rem;
+            font-size: 2.5rem;
+            color: #007BFF;
             animation: fadeIn 1s ease-in-out;
+        }
+
+        body.dark-mode h2 {
+            color: #1e90ff;
         }
 
         /* Table Styles */
@@ -241,6 +248,167 @@
             border-bottom: none;
         }
 
+        /* Leaderboard Section */
+        .leaderboard {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .leaderboard {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .leaderboard h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .leaderboard h3 {
+            color: #1e90ff;
+        }
+
+        .leaderboard ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .leaderboard li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.5s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .leaderboard li {
+            border-color: #444;
+        }
+
+        .leaderboard li:last-child {
+            border-bottom: none;
+        }
+
+        .leaderboard li span {
+            font-weight: bold;
+        }
+
+        .leaderboard li .medal {
+            font-size: 1.2rem;
+        }
+
+        .leaderboard li:nth-child(1) .medal {
+            color: gold;
+        }
+
+        .leaderboard li:nth-child(2) .medal {
+            color: silver;
+        }
+
+        .leaderboard li:nth-child(3) .medal {
+            color: #cd7f32; /* Bronze */
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        body.dark-mode .progress-bar {
+            background: #444;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #007BFF;
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+
+        body.dark-mode .progress-bar-fill {
+            background: #1e90ff;
+        }
+
+        /* Achievements Section */
+        .achievements {
+            margin: 20px auto;
+            max-width: 600px;
+            text-align: left;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .achievements {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .achievements h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            transition: color 0.5s;
+        }
+
+        body.dark-mode .achievements h3 {
+            color: #1e90ff;
+        }
+
+        .achievements ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .achievements li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: border-color 0.5s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .achievements li {
+            border-color: #444;
+        }
+
+        .achievements li:last-child {
+            border-bottom: none;
+        }
+
+        .achievements li .badge {
+            background: #007BFF;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        body.dark-mode .achievements li .badge {
+            background: #1e90ff;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -430,14 +598,33 @@
     <div class="leaderboard">
         <h3>Leaderboard</h3>
         <ul id="leaderboardList"></ul>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBar"></div>
+        </div>
+    </div>
+    
+    <!-- Achievements Section -->
+    <div class="achievements">
+        <h3>Achievements</h3>
+        <ul id="achievementsList"></ul>
     </div>
     
     <p style="margin-top: 30px; font-size: 14px; color: gray;">&copy; 2025 azrxc. All rights reserved.</p>
     <p class="footer-links">
-        <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        <a href="#">About Us</a> | <a href="#">Contact Us</a> | <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
     </p>
     
     <script>
+        // Initialize user data
+        let userData = JSON.parse(localStorage.getItem("userData")) || { name: null, streak: 0, lastUsed: null };
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+        // Ask for user's name if not already set
+        if (!userData.name) {
+            userData.name = prompt("Enter your name to join the leaderboard:");
+            localStorage.setItem("userData", JSON.stringify(userData));
+        }
+
         // Calculate function
         function calculate() {
             let prices = { 3: ["s3", "b3"], 4: ["t4", "b4"], 5: ["s5", "m5", "mu5", "t5", "b5"], 6: ["s6", "t6"], 7: ["s7", "m7"], 8: ["m8"], 10: ["m10"] };
@@ -539,29 +726,29 @@
         }
 
         // Streak System
-        let streakData = JSON.parse(localStorage.getItem("streakData")) || { lastUsed: null, streak: 0 };
-
         function updateStreak() {
             const today = new Date().toDateString();
-            if (streakData.lastUsed !== today) {
-                streakData.streak++;
-                streakData.lastUsed = today;
-                localStorage.setItem("streakData", JSON.stringify(streakData));
+            if (userData.lastUsed !== today) {
+                userData.streak++;
+                userData.lastUsed = today;
+                localStorage.setItem("userData", JSON.stringify(userData));
+                updateLeaderboard();
+                updateAchievements();
+                updateProgressBar();
             }
-            updateLeaderboard();
         }
 
         // Leaderboard
-        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-
         function updateLeaderboard() {
-            const username = prompt("Enter your name to be added to the leaderboard:");
-            if (username) {
-                leaderboard.push({ name: username, streak: streakData.streak });
-                leaderboard.sort((a, b) => b.streak - a.streak);
-                localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-                displayLeaderboard();
+            const userIndex = leaderboard.findIndex(entry => entry.name === userData.name);
+            if (userIndex !== -1) {
+                leaderboard[userIndex].streak = userData.streak;
+            } else {
+                leaderboard.push({ name: userData.name, streak: userData.streak });
             }
+            leaderboard.sort((a, b) => b.streak - a.streak);
+            localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+            displayLeaderboard();
         }
 
         function displayLeaderboard() {
@@ -570,13 +757,43 @@
             leaderboard.forEach((entry, index) => {
                 let li = document.createElement("li");
                 li.textContent = `${index + 1}. ${entry.name} - ${entry.streak} days`;
+                if (index < 3) {
+                    let medal = document.createElement("span");
+                    medal.className = "medal";
+                    medal.textContent = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
+                    li.appendChild(medal);
+                }
                 leaderboardList.appendChild(li);
             });
         }
 
-        // Load saved data and leaderboard on page load
+        // Achievements
+        function updateAchievements() {
+            let achievementsList = document.getElementById("achievementsList");
+            achievementsList.innerHTML = "";
+            const milestones = [7, 14, 21, 28, 35, 42, 49, 56, 63, 70];
+            milestones.forEach(milestone => {
+                if (userData.streak >= milestone) {
+                    let li = document.createElement("li");
+                    li.textContent = `🏆 ${milestone}-Day Streak`;
+                    achievementsList.appendChild(li);
+                }
+            });
+        }
+
+        // Progress Bar
+        function updateProgressBar() {
+            const progressBar = document.getElementById("progressBar");
+            const nextMilestone = Math.ceil(userData.streak / 7) * 7;
+            const progress = (userData.streak % 7) / 7 * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Load saved data, leaderboard, and achievements on page load
         displaySavedData();
         displayLeaderboard();
+        updateAchievements();
+        updateProgressBar();
     </script>
 </body>
 </html>
