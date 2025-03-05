@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sellables Calculator</title>
+    <title>Sellables to Trochus Calculator</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514"
      crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
@@ -178,7 +178,7 @@
         }
 
         /* Buttons */
-        .guidance-btn, .reset-btn, .dark-mode-btn, .save-btn {
+        .guidance-btn, .reset-btn, .dark-mode-btn, .save-btn, .load-btn {
             background-color: #007BFF;
             color: white;
             padding: 10px 20px;
@@ -189,7 +189,7 @@
             transition: background-color 0.3s, transform 0.3s;
         }
 
-        .guidance-btn:hover, .reset-btn:hover, .dark-mode-btn:hover, .save-btn:hover {
+        .guidance-btn:hover, .reset-btn:hover, .dark-mode-btn:hover, .save-btn:hover, .load-btn:hover {
             background-color: #0056b3;
             transform: scale(1.05);
         }
@@ -219,6 +219,15 @@
 
         .save-btn:hover {
             background-color: #218838;
+        }
+
+        .load-btn {
+            background-color: #ffc107;
+            margin-left: 10px;
+        }
+
+        .load-btn:hover {
+            background-color: #e0a800;
         }
 
         /* Guidance Box */
@@ -284,8 +293,8 @@
             border-bottom: none;
         }
 
-        /* Leaderboard Section */
-        .leaderboard {
+        /* Saved Data Section */
+        .saved-data {
             margin: 20px auto;
             max-width: 600px;
             text-align: left;
@@ -296,12 +305,12 @@
             transition: background 0.5s, box-shadow 0.5s;
         }
 
-        body.dark-mode .leaderboard {
+        body.dark-mode .saved-data {
             background: #2c2c2c;
             box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
         }
 
-        .leaderboard h3 {
+        .saved-data h3 {
             margin-top: 0;
             color: #007BFF;
             font-size: 1.5rem;
@@ -310,16 +319,16 @@
             transition: color 0.5s;
         }
 
-        body.dark-mode .leaderboard h3 {
+        body.dark-mode .saved-data h3 {
             color: #1e90ff;
         }
 
-        .leaderboard ul {
+        .saved-data ul {
             list-style-type: none;
             padding: 0;
         }
 
-        .leaderboard li {
+        .saved-data li {
             padding: 10px;
             border-bottom: 1px solid #ddd;
             transition: border-color 0.5s;
@@ -328,206 +337,25 @@
             align-items: center;
         }
 
-        body.dark-mode .leaderboard li {
+        body.dark-mode .saved-data li {
             border-color: #444;
         }
 
-        .leaderboard li:last-child {
+        .saved-data li:last-child {
             border-bottom: none;
         }
 
-        .leaderboard li span {
-            font-weight: bold;
-        }
-
-        .leaderboard li .medal {
-            font-size: 1.2rem;
-        }
-
-        .leaderboard li:nth-child(1) .medal {
-            color: gold;
-        }
-
-        .leaderboard li:nth-child(2) .medal {
-            color: silver;
-        }
-
-        .leaderboard li:nth-child(3) .medal {
-            color: #cd7f32; /* Bronze */
-        }
-
-        /* Progress Bar */
-        .progress-bar {
-            width: 100%;
-            height: 10px;
-            background: #e0e0e0;
-            border-radius: 5px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        body.dark-mode .progress-bar {
-            background: #444;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: #007BFF;
-            border-radius: 5px;
-            transition: width 0.5s;
-        }
-
-        body.dark-mode .progress-bar-fill {
-            background: #1e90ff;
-        }
-
-        /* Achievements Section */
-        .achievements {
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .achievements {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
-        }
-
-        .achievements h3 {
-            margin-top: 0;
-            color: #007BFF;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: color 0.5s;
-        }
-
-        body.dark-mode .achievements h3 {
-            color: #1e90ff;
-        }
-
-        .achievements ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .achievements li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            transition: border-color 0.5s;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        body.dark-mode .achievements li {
-            border-color: #444;
-        }
-
-        .achievements li:last-child {
-            border-bottom: none;
-        }
-
-        .achievements li .badge {
-            background: #007BFF;
+        .saved-data li button {
+            background-color: #dc3545;
             color: white;
             padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-        }
-
-        body.dark-mode .achievements li .badge {
-            background: #1e90ff;
-        }
-
-        /* Chat Section */
-        .chat {
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .chat {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
-        }
-
-        .chat h3 {
-            margin-top: 0;
-            color: #007BFF;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-            transition: color 0.5s;
-        }
-
-        body.dark-mode .chat h3 {
-            color: #1e90ff;
-        }
-
-        .chat ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .chat li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            transition: border-color 0.5s;
-        }
-
-        body.dark-mode .chat li {
-            border-color: #444;
-        }
-
-        .chat li:last-child {
-            border-bottom: none;
-        }
-
-        .chat li .timestamp {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        body.dark-mode .chat li .timestamp {
-            color: #aaa;
-        }
-
-        .chat input {
-            width: calc(100% - 90px);
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            margin-right: 10px;
-        }
-
-        body.dark-mode .chat input {
-            background: #444;
-            color: #f4f4f4;
-            border-color: #666;
-        }
-
-        .chat button {
-            background-color: #007BFF;
-            color: white;
-            padding: 8px 15px;
             border: none;
-            border-radius: 6px;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .chat button:hover {
-            background-color: #0056b3;
+        .saved-data li button:hover {
+            background-color: #c82333;
         }
 
         /* Essay Section */
@@ -587,10 +415,9 @@
         <ul>
             <li><a href="#">Sellables Calculator</a></li>
             <li><a href="#">Ratio Price History</a></li>
-            
         </ul>
     </nav>
-
+    
     <h2>Sellables to Trochus Calculator</h2>
     <table>
         <tr>
@@ -674,11 +501,12 @@
         </div>
     </div>
     
-    <!-- Buttons for guidance, reset, dark mode, and save -->
+    <!-- Buttons for guidance, reset, dark mode, save, and load -->
     <button class="guidance-btn" onclick="toggleGuidance()">Sellables Price</button>
     <button class="reset-btn" onclick="resetCalculator()">Reset</button>
     <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
     <button class="save-btn" onclick="saveData()">Save Data</button>
+    <button class="load-btn" onclick="loadData()">Load Data</button>
     
     <!-- Guidance Box -->
     <div class="guidance-box" id="guidanceBox">
@@ -763,29 +591,6 @@
         <ul id="savedDataList"></ul>
     </div>
     
-    <!-- Leaderboard Section -->
-    <div class="leaderboard">
-        <h3>Leaderboard</h3>
-        <ul id="leaderboardList"></ul>
-        <div class="progress-bar">
-            <div class="progress-bar-fill" id="progressBar"></div>
-        </div>
-    </div>
-    
-    <!-- Achievements Section -->
-    <div class="achievements">
-        <h3>Achievements</h3>
-        <ul id="achievementsList"></ul>
-    </div>
-    
-    <!-- Chat Section -->
-    <div class="chat">
-        <h3>Chat</h3>
-        <ul id="chatList"></ul>
-        <input type="text" id="chatInput" placeholder="Type your message..." disabled>
-        <button id="chatSend" onclick="sendMessage()" disabled>Send</button>
-    </div>
-    
     <!-- Essay Section -->
     <div class="essay">
         <h3>About This Website</h3>
@@ -793,7 +598,7 @@
             Welcome to the Sellables to Trochus Calculator! This tool is designed to help you calculate the value of your sellable items in Gralats and convert them into Trochus based on a customizable ratio. Whether you're a seasoned trader or just starting out, this calculator simplifies the process of managing your in-game economy.
         </p>
         <p>
-            Our mission is to provide a seamless and user-friendly experience for players to track their progress, compete on the leaderboard, and achieve milestones through streaks. The chat feature is available for experienced users with a 30+ day streak, fostering a community of dedicated players.
+            Our mission is to provide a seamless and user-friendly experience for players to track their progress and manage their in-game resources effectively.
         </p>
         <p>
             Thank you for using our calculator, and we hope it enhances your gaming experience!
@@ -807,13 +612,11 @@
     
     <script>
         // Initialize user data
-        let userData = JSON.parse(localStorage.getItem("userData")) || { name: null, streak: 0, lastUsed: null };
-        let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-        let chatMessages = JSON.parse(localStorage.getItem("chatMessages")) || [];
+        let userData = JSON.parse(localStorage.getItem("userData")) || { name: null };
 
         // Ask for user's name if not already set
         if (!userData.name) {
-            userData.name = prompt("Enter your name to join the leaderboard:");
+            userData.name = prompt("Enter your name:");
             localStorage.setItem("userData", JSON.stringify(userData));
         }
 
@@ -837,10 +640,11 @@
             document.getElementById("totalGralats").textContent = totalGralats;
             
             let ratio = parseFloat(document.getElementById("ratio").value);
-            document.getElementById("totalTrochus").textContent = ratio >= 3.0 && ratio <= 5.0 ? (totalGralats / ratio).toFixed(2) : "Invalid Ratio";
-            
-            // Update streak
-            updateStreak();
+            if (ratio >= 3.0 && ratio <= 7.0) {
+                document.getElementById("totalTrochus").textContent = (totalGralats / ratio).toFixed(2);
+            } else {
+                document.getElementById("totalTrochus").textContent = "Invalid Ratio";
+            }
         }
 
         // Toggle guidance box
@@ -876,7 +680,24 @@
                 sellables: document.getElementById("totalSellables").textContent,
                 gralats: document.getElementById("totalGralats").textContent,
                 trochus: document.getElementById("totalTrochus").textContent,
-                ratio: document.getElementById("ratio").value
+                ratio: document.getElementById("ratio").value,
+                inputs: {
+                    s3: document.getElementById("s3").value,
+                    s5: document.getElementById("s5").value,
+                    s6: document.getElementById("s6").value,
+                    s7: document.getElementById("s7").value,
+                    m5: document.getElementById("m5").value,
+                    m7: document.getElementById("m7").value,
+                    m8: document.getElementById("m8").value,
+                    m10: document.getElementById("m10").value,
+                    mu5: document.getElementById("mu5").value,
+                    t4: document.getElementById("t4").value,
+                    t5: document.getElementById("t5").value,
+                    t6: document.getElementById("t6").value,
+                    b3: document.getElementById("b3").value,
+                    b4: document.getElementById("b4").value,
+                    b5: document.getElementById("b5").value
+                }
             };
 
             // Save to localStorage
@@ -886,6 +707,36 @@
 
             // Update saved data list
             displaySavedData();
+        }
+
+        // Load saved data
+        function loadData() {
+            let savedData = JSON.parse(localStorage.getItem("savedData")) || [];
+            if (savedData.length === 0) {
+                alert("No saved data found!");
+                return;
+            }
+
+            let index = prompt("Enter the index of the entry you want to load (1 to " + savedData.length + "):");
+            index = parseInt(index) - 1;
+
+            if (isNaN(index) || index < 0 || index >= savedData.length) {
+                alert("Invalid index!");
+                return;
+            }
+
+            let entry = savedData[index];
+
+            // Fill inputs
+            for (let id in entry.inputs) {
+                document.getElementById(id).value = entry.inputs[id];
+            }
+
+            // Set ratio
+            document.getElementById("ratio").value = entry.ratio;
+
+            // Recalculate totals
+            calculate();
         }
 
         // Display saved data
@@ -917,117 +768,8 @@
             displaySavedData();
         }
 
-        // Streak System
-        function updateStreak() {
-            const today = new Date().toDateString();
-            if (userData.lastUsed !== today) {
-                userData.streak++;
-                userData.lastUsed = today;
-                localStorage.setItem("userData", JSON.stringify(userData));
-                updateLeaderboard();
-                updateAchievements();
-                updateProgressBar();
-                updateChatAccess();
-            }
-        }
-
-        // Leaderboard
-        function updateLeaderboard() {
-            const userIndex = leaderboard.findIndex(entry => entry.name === userData.name);
-            if (userIndex !== -1) {
-                leaderboard[userIndex].streak = userData.streak;
-            } else {
-                leaderboard.push({ name: userData.name, streak: userData.streak });
-            }
-            leaderboard.sort((a, b) => b.streak - a.streak);
-            localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-            displayLeaderboard();
-        }
-
-        function displayLeaderboard() {
-            let leaderboardList = document.getElementById("leaderboardList");
-            leaderboardList.innerHTML = "";
-            leaderboard.forEach((entry, index) => {
-                let li = document.createElement("li");
-                li.textContent = `${index + 1}. ${entry.name} - ${entry.streak} days`;
-                if (index < 3) {
-                    let medal = document.createElement("span");
-                    medal.className = "medal";
-                    medal.textContent = index === 0 ? "🥇" : index === 1 ? "🥈" : "🥉";
-                    li.appendChild(medal);
-                }
-                leaderboardList.appendChild(li);
-            });
-        }
-
-        // Achievements
-        function updateAchievements() {
-            let achievementsList = document.getElementById("achievementsList");
-            achievementsList.innerHTML = "";
-            const milestones = [7, 14, 21, 28, 35, 42, 49, 56, 63, 70];
-            milestones.forEach(milestone => {
-                if (userData.streak >= milestone) {
-                    let li = document.createElement("li");
-                    li.textContent = `🏆 ${milestone}-Day Streak`;
-                    achievementsList.appendChild(li);
-                }
-            });
-        }
-
-        // Progress Bar
-        function updateProgressBar() {
-            const progressBar = document.getElementById("progressBar");
-            const nextMilestone = Math.ceil(userData.streak / 7) * 7;
-            const progress = (userData.streak % 7) / 7 * 100;
-            progressBar.style.width = `${progress}%`;
-        }
-
-        // Chat Access
-        function updateChatAccess() {
-            const chatInput = document.getElementById("chatInput");
-            const chatSend = document.getElementById("chatSend");
-            if (userData.streak >= 30) {
-                chatInput.disabled = false;
-                chatSend.disabled = false;
-            } else {
-                chatInput.disabled = true;
-                chatSend.disabled = true;
-            }
-        }
-
-        // Chat System
-        function sendMessage() {
-            const chatInput = document.getElementById("chatInput");
-            const message = chatInput.value.trim();
-            if (message) {
-                const timestamp = new Date().toLocaleTimeString();
-                chatMessages.push({ name: userData.name, message, timestamp });
-                if (chatMessages.length > 10) {
-                    chatMessages.shift(); // Remove oldest message
-                }
-                localStorage.setItem("chatMessages", JSON.stringify(chatMessages));
-                displayChat();
-                chatInput.value = "";
-            }
-        }
-
-        function displayChat() {
-            const chatList = document.getElementById("chatList");
-            chatList.innerHTML = "";
-            chatMessages.forEach(msg => {
-                const li = document.createElement("li");
-                li.innerHTML = `<strong>${msg.name}</strong>: ${msg.message} <span class="timestamp">${msg.timestamp}</span>`;
-                chatList.appendChild(li);
-            });
-        }
-
-        // Load saved data, leaderboard, achievements, and chat on page load
+        // Initial display of saved data
         displaySavedData();
-        displayLeaderboard();
-        updateAchievements();
-        updateProgressBar();
-        updateChatAccess();
-        displayChat();
     </script>
 </body>
 </html>
