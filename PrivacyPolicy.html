@@ -11,6 +11,11 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .container {
             max-width: 800px;
@@ -18,46 +23,79 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
-        h1 {
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .policy-heading {
             color: #007bff;
+            font-size: 30px;
+            font-weight: bold;
             text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s ease-in-out forwards;
         }
-        p {
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        p, ul {
             line-height: 1.6;
+        }
+        .highlight {
+            background: linear-gradient(90deg, rgba(255,230,0,0.4) 0%, rgba(255,180,0,0.4) 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .animated-list li {
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .animated-list li:hover {
+            background: #eef5ff;
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Privacy Policy</h1>
+        <h1 class="policy-heading">Privacy Policy</h1>
         <p><strong>Your Privacy is Important to Us</strong></p>
-        <p>At Sellables.com, we are committed to protecting your personal information. This privacy policy explains how we collect, use, and safeguard your data while you use our platform.</p>
+        <p>At Sellables Calculator, we are committed to protecting your personal information. This privacy policy explains how we <strong>collect, use, and safeguard</strong> your data while you use our platform.</p>
         
         <h2>What We Collect:</h2>
-        <ul>
-            <li><strong>Non-Personal Information:</strong> We may collect information like your browser type, device, and how you interact with the site to improve our services.</li>
-            <li><strong>Cookies:</strong> We use cookies to enhance your experience and track site usage. You can adjust your cookie preferences in your browser settings.</li>
+        <ul class="animated-list">
+            <li><strong>📊 Non-Personal Information:</strong> We may collect data like your browser type, device, and how you interact with the site to improve our services.</li>
+            <li><strong>🍪 Cookies:</strong> We use cookies to enhance your experience and track site usage. You can adjust your cookie preferences in your browser settings.</li>
         </ul>
         
         <h2>How We Use Your Data:</h2>
-        <ul>
-            <li>To improve and optimize the website.</li>
-            <li>To respond to user inquiries and support requests.</li>
-            <li>To monitor site performance and enhance user experience.</li>
+        <ul class="animated-list">
+            <li>✅ To improve and optimize the website.</li>
+            <li>✅ To respond to user inquiries and support requests.</li>
+            <li>✅ To monitor site performance and enhance user experience.</li>
         </ul>
         
         <h2>Data Sharing:</h2>
-        <p>We do not sell or share your personal information with third parties. We only use aggregated data to improve the site’s functionality.</p>
+        <p>We <span class="highlight">do not sell or share</span> your personal information with third parties. We only use aggregated data to improve the site’s functionality.</p>
         
         <h2>Security:</h2>
-        <p>We use standard security protocols to protect your data. However, no method of data transmission over the internet is 100% secure.</p>
+        <p>We use <span class="highlight">standard security protocols</span> to protect your data. However, no method of data transmission over the internet is 100% secure.</p>
         
         <h2>Changes to the Privacy Policy:</h2>
-        <p>We may update this policy from time to time. Any changes will be posted here, and by continuing to use Sellables.com, you agree to the updated terms.</p>
+        <p>We may update this policy from time to time. Any changes will be posted here, and by continuing to use Sellables Calculator, you agree to the updated terms.</p>
     </div>
-
 </body>
 </html>
