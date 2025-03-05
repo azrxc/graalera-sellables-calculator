@@ -19,38 +19,99 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in-out;
         }
-        h1 {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .contact-heading {
             color: #007bff;
-            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            text-align: left;
+            border-left: 5px solid #007bff;
+            padding-left: 15px;
+            margin-bottom: 20px;
         }
-        p {
-            line-height: 1.6;
-        }
-        .contact-info {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .contact-info a {
-            color: #007bff;
+        .subscribe-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: white;
+            color: #ff0000;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 20px;
             text-decoration: none;
+            transition: 0.3s ease-in-out;
+            border: 2px solid #ff0000;
+            animation: pulse 1.5s infinite;
         }
-        .contact-info a:hover {
-            text-decoration: underline;
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .faq-section {
+            margin-top: 40px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-in-out;
+        }
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        .faq {
+            margin-top: 10px;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .faq:hover {
+            background: #eef5ff;
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Contact Us</h1>
-        <p>Have any questions, feedback, or business inquiries? Feel free to reach out to us. We are always happy to assist you!</p>
-
+        <h1 class="contact-heading">Contact Us – We're Here to Help</h1>
+        <p>Have any questions, feedback, or business inquiries? Whether you're looking for assistance with the Sellables Calculator, partnership opportunities, or general inquiries, we are always happy to assist you!</p>
+        <p>If you encounter any bugs or issues with our website, please let us know. Your feedback helps us improve and provide a better experience for all users.</p>
         <div class="contact-info">
-            <p><strong>Discord:</strong> azrxc </p>
-            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@azrxc" target="_blank">Subscribe!</a></p>
+            <p><strong>Email:</strong> azrele2@gmail.com</p>
+            <p><strong>YouTube:</strong></p>
+            <a href="https://www.youtube.com/@azrxc" target="_blank" class="subscribe-button">Subscribe</a>
         </div>
     </div>
-
+    
+    <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq">
+            <p>❓ What is Sellables Calculator?</p>
+            <p>✅ Sellables Calculator is a free and user-friendly online tool designed to help players convert their in-game sellable items into Trochus automatically.</p>
+        </div>
+        <div class="faq">
+            <p>❓ Do I need to create an account to use the calculator?</p>
+            <p>✅ No, our tool is completely free to use, and no registration or login is required.</p>
+        </div>
+        <div class="faq">
+            <p>❓ Can I adjust the exchange rates?</p>
+            <p>✅ Yes, users can modify exchange rates to reflect the latest in-game market fluctuations.</p>
+        </div>
+        <div class="faq">
+            <p>❓ How can I support the project?</p>
+            <p>✅ You can support us by subscribing to our YouTube channel <a href="https://www.youtube.com/@azrxc" target="_blank">@azrxc</a> and sharing our tool with other players.</p>
+        </div>
+    </div>
 </body>
 </html>
