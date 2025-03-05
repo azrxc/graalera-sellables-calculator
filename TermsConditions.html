@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms and Conditions - Sellables.com</title>
+    <title>Terms & Conditions - Sellables Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,6 +11,11 @@
             padding: 0;
             background-color: #f4f4f4;
             color: #333;
+            animation: fadeIn 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         .container {
             max-width: 800px;
@@ -18,48 +23,80 @@
             background: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-in-out;
+            position: relative;
+            overflow: hidden;
         }
-        h1 {
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .terms-heading {
             color: #007bff;
+            font-size: 28px;
+            font-weight: bold;
             text-align: center;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeUp 1s ease-in-out forwards;
         }
         p, ul {
             line-height: 1.6;
         }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 1s ease-in-out forwards;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .highlight {
+            background: linear-gradient(90deg, rgba(255,230,0,0.4) 0%, rgba(255,180,0,0.4) 100%);
+            padding: 3px 8px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .animated-list li {
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f9f9f9;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .animated-list li:hover {
+            background: #eef5ff;
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Terms and Conditions</h1>
-        <p><strong>Please Read These Terms Carefully</strong></p>
-        <p>By using Sellables.com, you agree to the following terms and conditions. Please review them before using our service.</p>
+        <h1 class="terms-heading">Terms & Conditions</h1>
+        <p class="fade-up"><strong>Last Updated:</strong> <span class="highlight">March 05, 2025</span></p>
         
-        <h2>General Use:</h2>
-        <p>Sellables.com is a free tool for personal use, helping you calculate the value of in-game items in Trochus. You agree not to misuse or reverse-engineer our platform.</p>
+        <h2 class="fade-up">1. Introduction</h2>
+        <p class="fade-up">Welcome to <strong>Sellables Calculator</strong>. By using this website, you agree to comply with and be bound by the following terms and conditions. If you do not agree, please refrain from using our services.</p>
         
-        <h2>Accuracy of Results:</h2>
-        <p>While we aim to provide accurate conversion values, we cannot guarantee the complete accuracy of the results. All calculations are for informational purposes and should not be considered as official values.</p>
+        <h2 class="fade-up">2. Disclaimer</h2>
+        <p class="fade-up">Sellables Calculator is an independent, fan-made tool developed by the community for the community. It is <strong>not affiliated with, endorsed by, or officially connected</strong> to any game developer or publisher. All trademarks and in-game references belong to their respective owners.</p>
         
-        <h2>Customizable Rates:</h2>
-        <p>Users are free to adjust exchange rates based on their own understanding of the market. These rates are user-driven and not officially set by any game developer.</p>
+        <h2 class="fade-up">3. Use of Services</h2>
+        <ul class="animated-list fade-up">
+            <li>Sellables Calculator is provided for informational and entertainment purposes only.</li>
+            <li>We do not guarantee the accuracy of any calculations or data displayed.</li>
+            <li>Users are responsible for verifying in-game values before making transactions.</li>
+        </ul>
         
-        <h2>Intellectual Property:</h2>
-        <p>All content on Sellables.com, including its design and code, is owned by the site’s creator. The tool is not affiliated with or endorsed by any game developer or publisher.</p>
+        <h2 class="fade-up">4. Limitation of Liability</h2>
+        <p class="fade-up">We are not responsible for any <span class="highlight">losses, errors, or issues</span> that may arise from using Sellables Calculator. You use this website at your own risk.</p>
         
-        <h2>Limitation of Liability:</h2>
-        <p>We are not responsible for any losses or damages resulting from your use of Sellables.com. You agree to use the tool at your own risk.</p>
-        
-        <h2>Privacy and Data Use:</h2>
-        <p>Your use of Sellables.com is governed by our Privacy Policy. Please review it to understand how your data is handled.</p>
-        
-        <h2>Changes to the Service:</h2>
-        <p>We reserve the right to update, modify, or discontinue Sellables.com at any time, without notice.</p>
-        
-        <h2>Modifications to These Terms:</h2>
-        <p>These terms may change over time. All updates will be posted on this page, and your continued use of the service constitutes your acceptance of these changes.</p>
+        <h2 class="fade-up">5. Changes to Terms</h2>
+        <p class="fade-up">We reserve the right to update these Terms & Conditions at any time. Continued use of the site after changes signifies acceptance of the new terms.</p>
     </div>
-
 </body>
 </html>
