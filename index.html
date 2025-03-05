@@ -397,6 +397,29 @@
             color: #ddd;
         }
 
+        /* Dark Mode Button */
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dark-mode-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .dark-mode-btn {
+            background-color: #333;
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -504,7 +527,6 @@
     <!-- Buttons for guidance, reset, dark mode, save, and load -->
     <button class="guidance-btn" onclick="toggleGuidance()">Sellables Price</button>
     <button class="reset-btn" onclick="resetCalculator()">Reset</button>
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
     <button class="save-btn" onclick="saveData()">Save Data</button>
     <button class="load-btn" onclick="loadData()">Load Data</button>
     
@@ -608,6 +630,9 @@
     <p class="footer-links">
         <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
     </p>
+    
+    <!-- Dark Mode Button -->
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
     
     <script>
         // Initialize user data
