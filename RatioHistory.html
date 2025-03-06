@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ratio History & Voting</title>
+    <title>Ratio History</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
     <style>
         /* General Styles */
         body {
@@ -121,159 +120,56 @@
             box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
         }
 
-        /* Voting Section */
-        .voting-section {
-            margin: 20px auto;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .voting-section {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
-        }
-
-        .voting-section h3 {
-            margin-top: 0;
-            color: #007BFF;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        body.dark-mode .voting-section h3 {
-            color: #1e90ff;
-        }
-
-        .voting-section input {
-            width: 100px;
-            text-align: center;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            background: white;
-            color: #333;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        body.dark-mode .voting-section input {
-            background: #444;
-            color: #f4f4f4;
-            border-color: #666;
-        }
-
-        .voting-section input:focus {
-            border-color: #007BFF;
-            transform: scale(1.05);
-        }
-
-        .voting-section button {
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .voting-section button:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        /* Suggested Votes Section */
-        .suggested-votes {
-            margin: 20px auto;
-            max-width: 600px;
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .suggested-votes {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
-        }
-
-        .suggested-votes h3 {
-            margin-top: 0;
-            color: #007BFF;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        body.dark-mode .suggested-votes h3 {
-            color: #1e90ff;
-        }
-
-        .suggested-votes ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .suggested-votes li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        body.dark-mode .suggested-votes li {
-            border-color: #444;
-        }
-
-        .suggested-votes li:hover {
-            background-color: rgba(0, 123, 255, 0.1);
-            transform: scale(1.02);
-        }
-
-        .suggested-votes li:last-child {
-            border-bottom: none;
-        }
-
-        /* Essay Section */
-        .essay {
+        /* Guide Book Section */
+        .guide-book {
             margin: 20px auto;
             max-width: 800px;
-            background: white;
+            background: #f9f3e6;
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border: 2px solid #d4af37;
+            position: relative;
             transition: background 0.5s, box-shadow 0.5s;
+            overflow: hidden;
         }
 
-        body.dark-mode .essay {
+        body.dark-mode .guide-book {
             background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+            border-color: #1e90ff;
         }
 
-        .essay h3 {
+        .guide-book h3 {
             margin-top: 0;
             color: #007BFF;
             font-size: 1.5rem;
             text-align: center;
             margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
         }
 
-        body.dark-mode .essay h3 {
+        body.dark-mode .guide-book h3 {
             color: #1e90ff;
         }
 
-        .essay p {
+        .guide-book p {
             line-height: 1.6;
             color: #555;
+            animation: fadeIn 1.5s ease-in-out;
         }
 
-        body.dark-mode .essay p {
+        body.dark-mode .guide-book p {
             color: #ddd;
+        }
+
+        .guide-book ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .guide-book ul li {
+            margin-bottom: 10px;
         }
 
         /* Footer */
@@ -311,7 +207,7 @@
             <li><a href="index.html">Sellables Calculator</a></li>
             <li><a href="RatioHistory.html">Ratio History</a></li>
             <li><a href="TradingGuide.html">Trading Guide</a></li>
-            <li><a href="Forum.html">Forum</a></li>
+            <li><a href="Profits.html">Profits</a></li>
         </ul>
     </nav>
 
@@ -328,30 +224,77 @@
         <canvas id="ratioHistoryChart"></canvas>
     </div>
 
-    <!-- Voting Section -->
-    <div class="voting-section">
-        <h3>Vote for This Month's Ratio</h3>
-        <input type="number" id="voteRatio" step="0.1" min="3.0" max="7.0" placeholder="Enter ratio (3.0-7.0)">
-        <button onclick="submitVote()">Submit Vote</button>
-        <p id="voteMessage"></p>
-    </div>
-
-    <!-- Suggested Votes Section -->
-    <div class="suggested-votes">
-        <h3>Live Voting Results</h3>
-        <ul id="suggestedVotesList"></ul>
-    </div>
-
-    <!-- Essay Section -->
-    <div class="essay">
+    <!-- Guide Book Section -->
+    <div class="guide-book">
+        <h3>📘 Comprehensive Guide to the Trochus-to-Gralat Ratio</h3>
         <p>
-            A dynamic and interactive platform designed to empower users in determining the most suitable 1 Trochus to $X Gralats (1:$X) ratio for the current month. This page combines real-time voting, historical data visualization, and community-driven decision-making to create a seamless and engaging experience.
+            Welcome to the ultimate guide to understanding the Trochus-to-Gralat ratio! Whether you're a new player or a seasoned trader, this guide will help you understand how the ratio works and what factors influence it. Let's dive in!
+        </p>
+
+        <h4>What is the Ratio?</h4>
+        <p>
+            The ratio represents how many Gralats you can trade for 1 Trochus. For example, a ratio of <strong>1:3.5</strong> means 1 Trochus is worth 3.5 Gralats. This ratio changes over time based on various factors in the game's economy.
+        </p>
+
+        <h4>What Affects the Ratio?</h4>
+        <p>
+            The ratio is influenced by the balance between the <strong>supply of Trochus</strong> and the <strong>demand for Gralats</strong>. Here’s a detailed breakdown of the key factors:
+        </p>
+        <ul>
+            <li>
+                <strong>Player Activity</strong>:
+                <ul>
+                    <li>If many players are farming Trochus/Sellables, the supply increases, which can lower the ratio.</li>
+                    <li>If fewer players are farming Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>In-Game Events</strong>:
+                <ul>
+                    <li>Events that make Trochus/Sellables easier to farm (double jobs) can increase supply and lower the ratio.</li>
+                    <li>Events that require players to spend more Gralats (limited-time items/auctions) can increase demand for Gralats and raise the ratio.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Market Trends</strong>:
+                <ul>
+                    <li>If players start hoarding Trochus/Sellables, the supply decreases, which can raise the ratio.</li>
+                    <li>If players trade Trochus in bulk, the supply increases, which can lower the ratio.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Inflation or Deflation</strong>:
+                <ul>
+                    <li>If there’s an oversupply of Gralats (farming exploits/macros), their value decreases, which can raise the ratio.</li>
+                    <li>If Gralats become scarcer (increased spending), their value increases, which can lower the ratio.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>External Factors</strong>:
+                <ul>
+                    <li>Real-world events (holidays/school schedules) can affect player activity and influence the ratio.</li>
+                    <li>Community trends (players collectively deciding to farm or avoid farming Trochus/Sellables) can also impact the ratio.</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>How to Use This Information</h4>
+        <p>
+            Understanding these factors can help you make better trading decisions. For example:
+        </p>
+        <ul>
+            <li>If you notice the ratio is low (1:$4-5+), it might be a good time to trade Trochus for Gralats.</li>
+            <li>If you expect the ratio to rise (1:$3-4), you might want to hold onto your Trochus/Sellables for a better deal later.</li>
+        </ul>
+
+        <h4>Final Tips</h4>
+        <p>
+            - Keep an eye on the <strong>Ratio History Graph</strong> to track trends over time.<br>
+            - Stay active in the community to learn about upcoming events or changes.<br>
+            - Always think ahead and plan your trades based on the current economic climate.
         </p>
         <p>
-            The Ratio History Graph provides a visual representation of past ratios, allowing users to track trends and make informed decisions. The Live Voting System enables users to submit their preferred ratio and see real-time updates as votes are cast. By fostering collaboration and transparency, this page ensures that the selected ratio reflects the collective preference of the community.
-        </p>
-        <p>
-            Thank you for being part of this innovative initiative. Together, we can create a fair and efficient system for managing in-game resources.
+            Happy trading, and may your Gralat stash grow! 🎮
         </p>
     </div>
 
@@ -369,11 +312,6 @@
             { month: "2025-01", ratio: 3.3 },
             { month: "2025-02", ratio: 3.5 }
         ];
-        let votingData = JSON.parse(localStorage.getItem("votingData")) || { month: getCurrentMonth(), votes: {} };
-        let userVotes = JSON.parse(localStorage.getItem("userVotes")) || {};
-
-        // Connect to WebSocket server (replace with your server URL)
-        const socket = io("https://your-socket-server-url");
 
         // Get current month in YYYY-MM format
         function getCurrentMonth() {
@@ -415,74 +353,6 @@
             });
         }
 
-        // Submit vote
-        function submitVote() {
-            const ratio = parseFloat(document.getElementById('voteRatio').value);
-            const currentMonth = getCurrentMonth();
-
-            // Validate ratio
-            if (isNaN(ratio) || ratio < 3.0 || ratio > 7.0) {
-                document.getElementById('voteMessage').textContent = "Please enter a valid ratio between 3.0 and 7.0.";
-                return;
-            }
-
-            // Check if user has already voted this month
-            if (userVotes[currentMonth]) {
-                document.getElementById('voteMessage').textContent = "You have already voted this month.";
-                return;
-            }
-
-            // Emit vote to server
-            socket.emit('vote', { ratio, month: currentMonth });
-
-            // Mark user as voted
-            userVotes[currentMonth] = true;
-            localStorage.setItem("userVotes", JSON.stringify(userVotes));
-
-            // Display success message
-            document.getElementById('voteMessage').textContent = "Your vote has been submitted!";
-        }
-
-        // Listen for live vote updates
-        socket.on('updateVotes', (data) => {
-            votingData = data;
-            displaySuggestedVotes();
-        });
-
-        // Display suggested votes
-        function displaySuggestedVotes() {
-            const suggestedVotesList = document.getElementById('suggestedVotesList');
-            suggestedVotesList.innerHTML = "";
-
-            for (let ratio in votingData.votes) {
-                let li = document.createElement('li');
-                li.textContent = `1 Trochus : $${ratio} Gralats, Votes: ${votingData.votes[ratio]}`;
-                suggestedVotesList.appendChild(li);
-            }
-        }
-
-        // Automatically select the most voted ratio at the end of the month
-        function updateHistoricalData() {
-            const currentMonth = getCurrentMonth();
-            if (votingData.month !== currentMonth) {
-                // Find the most voted ratio
-                let mostVotedRatio = Object.keys(votingData.votes).reduce((a, b) => votingData.votes[a] > votingData.votes[b] ? a : b);
-
-                // Add to historical data
-                historicalData.push({ month: votingData.month, ratio: parseFloat(mostVotedRatio) });
-
-                // Reset voting data for the new month
-                votingData = { month: currentMonth, votes: {} };
-
-                // Save data to localStorage
-                localStorage.setItem("historicalData", JSON.stringify(historicalData));
-                localStorage.setItem("votingData", JSON.stringify(votingData));
-
-                // Re-render chart
-                renderChart();
-            }
-        }
-
         // Toggle dark mode
         function toggleDarkMode() {
             document.body.classList.toggle("dark-mode");
@@ -490,8 +360,6 @@
 
         // Initial render
         renderChart();
-        updateHistoricalData();
-        displaySuggestedVotes();
     </script>
 </body>
 </html>
