@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Trading Guide</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        h1, h2, h3 {
+            color: #007BFF;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #1e90ff;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        body.dark-mode a {
+            color: #1e90ff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        body.dark-mode .section h2 {
+            border-color: #1e90ff;
+        }
+
+        .tip {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background 0.5s, box-shadow 0.5s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        body.dark-mode .tip {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .tip h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        body.dark-mode .tip h3 {
+            color: #1e90ff;
+        }
+
+        .tip p {
+            margin: 10px 0;
+        }
+
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .dark-mode-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .dark-mode-btn {
+            background-color: #333;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            padding: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: gray;
+            text-align: center;
+        }
+
+        footer a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Interactive Tutorial Styles */
+        .interactive-tutorial {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background 0.5s, box-shadow 0.5s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        body.dark-mode .interactive-tutorial {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        .interactive-tutorial h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        body.dark-mode .interactive-tutorial h3 {
+            color: #1e90ff;
+        }
+
+        .interactive-tutorial button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .interactive-tutorial button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .quiz-question {
+            margin-bottom: 20px;
+        }
+
+        .quiz-question p {
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quiz-options button {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .quiz-options button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        .quiz-result {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #007BFF;
+            margin-top: 20px;
+        }
+
+        body.dark-mode .quiz-result {
+            color: #1e90ff;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Sellables Calculator</a></li>
+            <li><a href="RatioHistory.html">Ratio History</a></li>
+            <li><a href="TradingGuide.html">Trading Guide</a></li>
+            <li><a href="Forum.html">Forum</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dark Mode Button -->
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <div class="container">
+        <h1>Trading Guide</h1>
+        <p>Welcome to the ultimate guide for trading in Era! Whether you're a beginner or an experienced trader, these Guide will help you maximize your profits and avoid common mistakes.</p>
+
+        <!-- Introduction -->
+        <div class="section">
+            <h2>Introduction</h2>
+            <p>Trading is a key part of Era's economy. By buying and selling items, you can earn Gralats, Trochus, and other valuable resources. This tutorial will teach you the basics, advanced strategies, and tools to succeed.</p>
+        </div>
+
+        <!-- Basics of Trading -->
+        <div class="section">
+            <h2>Basics of Trading</h2>
+            <div class="tip">
+                <h3>What is Trading?</h3>
+                <p>Trading involves exchanging items, Gralats, or Trochus with other players. It's a great way to get the items you need while earning profits.</p>
+            </div>
+            <div class="tip">
+                <h3>Key Terms</h3>
+                <ul>
+                    <li><strong>Gralats</strong>: The main currency in Era.</li>
+                    <li><strong>Trochus</strong>: A secondary currency used for trading.</li>
+                    <li><strong>Sellables</strong>: Items that can be sold for Gralats or Trochus.</li>
+                    <li><strong>Ratio</strong>: The exchange rate between Trochus and Gralats (e.g., 1 Trochus : $4 Gralats).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Interactive Tutorial -->
+        <div class="section">
+            <h2>Interactive Tutorial</h2>
+            <div class="interactive-tutorial" id="interactiveTutorial">
+                <h3>Test Your Knowledge!</h3>
+                <p>Answer the following questions to test your understanding of Trading.</p>
+                <div id="quizContainer"></div>
+                <div id="quizResult" class="quiz-result"></div>
+            </div>
+        </div>
+
+        <!-- Guide for Successful Trading -->
+        <div class="section">
+            <h2>Guide for Successful Trading</h2>
+            <div class="tip">
+                <h3>Buy Low, Sell High</h3>
+                <p>Purchase items when they're cheap (e.g., during events) and sell them when prices rise.</p>
+            </div>
+            <div class="tip">
+                <h3>Diversify Your Portfolio</h3>
+                <p>Trade a variety of items to reduce risk. Don't put all your Trochus into one type of item.</p>
+            </div>
+            <div class="tip">
+                <h3>Patience is Key</h3>
+                <p>Wait for the right opportunity. Don't rush into bad deals.</p>
+            </div>
+        </div>
+
+        <!-- Advanced Strategies -->
+        <div class="section">
+            <h2>Advanced Strategies</h2>
+            <div class="tip">
+                <h3>Flipping Items</h3>
+                <p>Buy undervalued items and sell them for a profit. Research prices to find good deals.</p>
+            </div>
+            <div class="tip">
+                <h3>Event Trading</h3>
+                <p>During events, buy rare items and sell them later when they become more valuable.</p>
+            </div>
+            <div class="tip">
+                <h3>Bulk Trading</h3>
+                <p>Trade in large quantities to negotiate better deals with other players.</p>
+            </div>
+        </div>
+
+        <!-- Common Mistakes to Avoid -->
+        <div class="section">
+            <h2>Common Mistakes to Avoid</h2>
+            <div class="tip">
+                <h3>Overpaying</h3>
+                <p>Always check the value of items before trading. Use tools like the <a href="SellablesCalculator.html">Sellables Calculator</a>.</p>
+            </div>
+            <div class="tip">
+                <h3>Ignoring Ratios</h3>
+                <p>Understanding ratios is crucial for fair trades. Don't accept deals that don't make sense.</p>
+            </div>
+            <div class="tip">
+                <h3>Scams</h3>
+                <p>Be cautious of fake offers or misleading trades. Always double-check before confirming.</p>
+            </div>
+        </div>
+
+        <!-- Tools and Resources -->
+        <div class="section">
+            <h2>Tools and Resources</h2>
+            <div class="tip">
+                <h3>Sellables Calculator</h3>
+                <p>Use the <a href="SellablesCalculator.html">Sellables Calculator</a> to determine the value of your items and make informed trades.</p>
+            </div>
+            <div class="tip">
+                <h3>Community Forums</h3>
+                <p>Join forums or Discord servers to discuss trading Guide and stay updated on market trends.</p>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2>Conclusion</h2>
+            <p>Trading in Era can be highly rewarding if you follow these Guide and strategies. Practice, experiment, and always stay informed. Happy trading!</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 azrxc. All rights reserved.</p>
+        <p class="footer-links">
+            <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        </p>
+    </footer>
+
+    <script>
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Quiz Questions and Answers
+        const quizQuestions = [
+            {
+                question: "Is it a good idea to buy items during events when they're cheap?",
+                answer: true
+            },
+            {
+                question: "Should you always accept the first trade offer you receive?",
+                answer: false
+            },
+            {
+                question: "Is it important to check the ratio before trading?",
+                answer: true
+            },
+            {
+                question: "Should you trade all your Gralats for one rare item?",
+                answer: false
+            },
+            {
+                question: "Is patience important when trading?",
+                answer: true
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        // Display Quiz Questions
+        function displayQuiz() {
+            const quizContainer = document.getElementById("quizContainer");
+            const quizResult = document.getElementById("quizResult");
+
+            if (currentQuestion < quizQuestions.length) {
+                const question = quizQuestions[currentQuestion];
+                quizContainer.innerHTML = `
+                    <div class="quiz-question">
+                        <p>${question.question}</p>
+                        <div class="quiz-options">
+                            <button onclick="checkAnswer(true)">Yes</button>
+                            <button onclick="checkAnswer(false)">No</button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                quizContainer.innerHTML = "";
+                quizResult.innerHTML = `
+                    <p>Quiz Complete! Your score is ${score} out of ${quizQuestions.length}.</p>
+                `;
+            }
+        }
+
+        // Check Answer
+        function checkAnswer(userAnswer) {
+            const question = quizQuestions[currentQuestion];
+            if (userAnswer === question.answer) {
+                score++;
+            }
+            currentQuestion++;
+            displayQuiz();
+        }
+
+        // Start Quiz
+        displayQuiz();
+    </script>
+</body>
+</html>

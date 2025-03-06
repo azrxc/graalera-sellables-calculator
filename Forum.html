@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sellables Forum</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        h1, h2, h3 {
+            color: #007BFF;
+        }
+
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3 {
+            color: #1e90ff;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        body.dark-mode a {
+            color: #1e90ff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .section {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .section h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 10px;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        body.dark-mode .section h2 {
+            border-color: #1e90ff;
+        }
+
+        .forum-container {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        body.dark-mode .forum-container {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .forum-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .forum-container:hover {
+            box-shadow: 0px 8px 16px rgba(255, 255, 255, 0.2);
+        }
+
+        .forum-container h3 {
+            margin-top: 0;
+            color: #007BFF;
+        }
+
+        body.dark-mode .forum-container h3 {
+            color: #1e90ff;
+        }
+
+        .forum-container p {
+            margin: 10px 0;
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .forum-container img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin-top: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .comments {
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        body.dark-mode .comments {
+            border-color: #444;
+        }
+
+        .comment {
+            margin-bottom: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        body.dark-mode .comment {
+            background: #333;
+        }
+
+        .comment p {
+            margin: 5px 0;
+        }
+
+        .comment-author {
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        body.dark-mode .comment-author {
+            color: #1e90ff;
+        }
+
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .dark-mode-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .dark-mode-btn {
+            background-color: #333;
+        }
+
+        /* Flame Reaction Button */
+        .flame-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #ff4500;
+            transition: transform 0.3s;
+        }
+
+        .flame-btn:hover {
+            transform: scale(1.2);
+        }
+
+        /* Post Actions (Edit, Delete) */
+        .post-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007BFF;
+            font-size: 0.9em;
+            transition: color 0.3s;
+        }
+
+        .post-actions button:hover {
+            color: #0056b3;
+        }
+
+        /* New Post Form */
+        #new-post-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        #new-post-form input,
+        #new-post-form textarea,
+        #new-post-form button {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+        }
+
+        #new-post-form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #new-post-form button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            padding: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: gray;
+            text-align: center;
+        }
+
+        footer a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Rules Pop-Up Modal */
+        .rules-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1001;
+        }
+
+        .rules-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            max-width: 500px;
+            text-align: center;
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        body.dark-mode .rules-content {
+            background-color: #2c2c2c;
+            color: #f4f4f4;
+        }
+
+        .rules-content h2 {
+            color: #007BFF;
+            margin-top: 0;
+        }
+
+        body.dark-mode .rules-content h2 {
+            color: #1e90ff;
+        }
+
+        .rules-content p {
+            margin: 15px 0;
+            line-height: 1.6;
+        }
+
+        .rules-content button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .rules-content button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Rules Pop-Up Modal -->
+    <div class="rules-modal" id="rules-modal">
+        <div class="rules-content">
+            <h2>Welcome to the Sellables Forum!</h2>
+            <p>
+                Before you dive in, please take a moment to read our community guidelines:
+            </p>
+            <ul style="text-align: left; padding-left: 20px;">
+                <li>💬 <strong>Be Respectful:</strong> Treat others with kindness and respect. No hate speech, bullying, or harassment.</li>
+                <li>🚫 <strong>No Spam:</strong> Keep your posts relevant and avoid excessive self-promotion.</li>
+                <li>🔒 <strong>Mind Your Words:</strong> Avoid sharing sensitive or personal information.</li>
+                <li>🔥 <strong>Stay Positive:</strong> Encourage and uplift others in the community.</li>
+            </ul>
+            <p>
+                By using this forum, you agree to follow these rules. Let's make this a fun and welcoming space for everyone!
+            </p>
+            <button onclick="closeRulesModal()">I Agree</button>
+        </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Sellables Calculator</a></li>
+            <li><a href="RatioHistory.html">Ratio History</a></li>
+            <li><a href="TradingGuide.html">Trading Guide</a></li>
+            <li><a href="Forum.html">Forum</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dark Mode Button -->
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <div class="container">
+        <h1>Sellables Forum</h1>
+        <p>Connect with other traders, share tips, and flex your profits!</p>
+
+        <!-- New Post Form -->
+        <div class="section">
+            <h2>Create a New Post</h2>
+            <form id="new-post-form">
+                <select id="post-category" required>
+                    <option value="flex">Flex</option>
+                    <option value="tips">Tips</option>
+                </select>
+                <input type="text" id="post-title" placeholder="Post Title" required>
+                <textarea id="post-content" placeholder="What's on your mind?" required></textarea>
+                <input type="file" id="post-image" accept="image/*">
+                <button type="submit">Post</button>
+            </form>
+        </div>
+
+        <!-- Flex Section -->
+        <div class="section" id="flex-section">
+            <h2>Flex Zone</h2>
+            <!-- Flex posts will be dynamically added here -->
+        </div>
+
+        <!-- Tips Section -->
+        <div class="section" id="tips-section">
+            <h2>Trading Tips</h2>
+            <!-- Tips posts will be dynamically added here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 azrxc. All rights reserved.</p>
+        <p class="footer-links">
+            <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        </p>
+    </footer>
+
+    <script>
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Show rules modal for first-time users
+        const rulesModal = document.getElementById("rules-modal");
+        const hasSeenRules = localStorage.getItem("hasSeenRules");
+
+        if (!hasSeenRules) {
+            rulesModal.style.display = "flex";
+        }
+
+        function closeRulesModal() {
+            rulesModal.style.display = "none";
+            localStorage.setItem("hasSeenRules", "true");
+        }
+
+        // Forum Post Data
+        let posts = [];
+
+        // Add a new post
+        document.getElementById("new-post-form").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const category = document.getElementById("post-category").value;
+            const title = document.getElementById("post-title").value;
+            const content = document.getElementById("post-content").value;
+            const imageFile = document.getElementById("post-image").files[0];
+
+            const newPost = {
+                id: Date.now(),
+                category,
+                title,
+                content,
+                image: imageFile ? URL.createObjectURL(imageFile) : null,
+                reactions: 0,
+                timestamp: new Date().toLocaleString(),
+            };
+
+            posts.push(newPost);
+            renderPosts();
+            this.reset();
+        });
+
+        // Render posts
+        function renderPosts() {
+            const flexSection = document.getElementById("flex-section");
+            const tipsSection = document.getElementById("tips-section");
+
+            flexSection.innerHTML = "<h2>Flex Zone</h2>";
+            tipsSection.innerHTML = "<h2>Trading Tips</h2>";
+
+            // Sort posts by reactions (most reactions first)
+            posts.sort((a, b) => b.reactions - a.reactions);
+
+            posts.forEach(post => {
+                const postElement = document.createElement("div");
+                postElement.classList.add("forum-container");
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p>Posted by <strong>You</strong> on ${post.timestamp}</p>
+                    <p>${post.content}</p>
+                    ${post.image ? `<img src="${post.image}" alt="Flex Image">` : ""}
+                    <div class="comments">
+                        <button class="flame-btn" onclick="reactToPost(${post.id})">🔥 ${post.reactions}</button>
+                    </div>
+                    <div class="post-actions">
+                        <button onclick="editPost(${post.id})">Edit</button>
+                        <button onclick="deletePost(${post.id})">Delete</button>
+                    </div>
+                `;
+
+                if (post.category === "flex") {
+                    flexSection.appendChild(postElement);
+                } else if (post.category === "tips") {
+                    tipsSection.appendChild(postElement);
+                }
+            });
+        }
+
+        // React to a post
+        function reactToPost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                post.reactions++;
+                renderPosts();
+            }
+        }
+
+        // Edit a post
+        function editPost(postId) {
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                const newTitle = prompt("Edit Title", post.title);
+                const newContent = prompt("Edit Content", post.content);
+                if (newTitle !== null && newContent !== null) {
+                    post.title = newTitle;
+                    post.content = newContent;
+                    renderPosts();
+                }
+            }
+        }
+
+        // Delete a post
+        function deletePost(postId) {
+            posts = posts.filter(p => p.id !== postId);
+            renderPosts();
+        }
+    </script>
+</body>
+</html>
