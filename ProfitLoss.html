@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profit and Loss Guide</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #007BFF;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        body.dark-mode h2 {
+            color: #1e90ff;
+        }
+
+        /* Navigation Menu */
+        nav {
+            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            padding: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.1);
+        }
+
+        /* Dark Mode Button */
+        .dark-mode-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .dark-mode-btn:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .dark-mode-btn {
+            background-color: #333;
+        }
+
+        /* Trade Log Section */
+        .trade-log-section {
+            margin: 20px auto;
+            max-width: 800px;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        body.dark-mode .trade-log-section {
+            background: #2c2c2c;
+            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+        }
+
+        .trade-log-section h3 {
+            margin-top: 0;
+            color: #007BFF;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        body.dark-mode .trade-log-section h3 {
+            color: #1e90ff;
+        }
+
+        .trade-log-section label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        .trade-log-section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .trade-log-section button {
+            background: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .trade-log-section button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+
+        body.dark-mode .trade-log-section button {
+            background: #333;
+        }
+
+        .trade-log-section #tradeList {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .trade-log-section .trade-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .trade-log-section .trade-item:hover {
+            background-color: rgba(0, 123, 255, 0.1);
+        }
+
+        .trade-log-section .trade-item .profit {
+            color: green;
+            font-weight: bold;
+        }
+
+        .trade-log-section .trade-item .loss {
+            color: red;
+            font-weight: bold;
+        }
+
+        .trade-log-section .trade-item .actions button {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .trade-log-section .trade-item .actions button.edit-btn {
+            background: #007BFF;
+        }
+
+        .trade-log-section .trade-item .actions button:hover {
+            opacity: 0.8;
+        }
+
+        /* Profit and Loss Sections */
+        .profit-section, .loss-section {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            transition: background 0.5s, box-shadow 0.5s;
+        }
+
+        .profit-section {
+            background: #d4edda; /* Light green */
+        }
+
+        .loss-section {
+            background: #f8d7da; /* Light red */
+        }
+
+        body.dark-mode .profit-section {
+            background: #155724; /* Dark green */
+            color: #f4f4f4;
+        }
+
+        body.dark-mode .loss-section {
+            background: #721c24; /* Dark red */
+            color: #f4f4f4;
+        }
+
+        .profit-section h3, .loss-section h3 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .profit-section h3 {
+            color: #28a745; /* Green */
+        }
+
+        .loss-section h3 {
+            color: #dc3545; /* Red */
+        }
+
+        body.dark-mode .profit-section h3 {
+            color: #90ee90; /* Light green */
+        }
+
+        body.dark-mode .loss-section h3 {
+            color: #ff7f7f; /* Light red */
+        }
+
+        .profit-section p, .loss-section p {
+            line-height: 1.6;
+            color: #333;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        body.dark-mode .profit-section p, body.dark-mode .loss-section p {
+            color: #f4f4f4;
+        }
+
+        .profit-section ul, .loss-section ul {
+            text-align: left;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .profit-section ul li, .loss-section ul li {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: gray;
+        }
+
+        footer a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Sellables Calculator</a></li>
+            <li><a href="RatioHistory.html">Ratio History</a></li>
+            <li><a href="TradingGuide.html">Trading Guide</a></li>
+            <li><a href="ProfitLoss.html">Profit and Loss</a></li>
+        </ul>
+    </nav>
+
+    <!-- Dark Mode Button -->
+    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
+
+    <h2>Profit and Loss Guide</h2>
+
+    <!-- Trade Log Section -->
+    <div class="trade-log-section">
+        <h3>📊 Trade Log</h3>
+        <p><em>Note: Your trade log is saved locally and cannot be shared with others.</em></p>
+        <label for="itemName">Item Name:</label>
+        <input type="text" id="itemName" placeholder="Rage Blade">
+        <label for="buyPriceLog">Buy Price (Trochus):</label>
+        <input type="number" id="buyPriceLog" placeholder="120,000">
+        <label for="sellPriceLog">Sell Price (Trochus):</label>
+        <input type="number" id="sellPriceLog" placeholder="150,000">
+        <button onclick="addTrade()">Add Trade</button>
+        <ul id="tradeList"></ul>
+    </div>
+
+    <!-- Profit Section -->
+    <div class="profit-section">
+        <h3>📈 Profit Guide</h3>
+        <p class="profit-text">
+            Profit is the extra Trochus you earn from a trade. It’s the reward for making smart trading decisions. Here’s how to maximize your profits:
+        </p>
+        <ul>
+            <li>
+                <strong>Buy Low, Sell High</strong>:
+                <ul>
+                    <li>Look for undervalued items and buy them at a low price. For example, if you buy a melee for <strong>10,000 Trochus</strong> and sell it for <strong>15,000 Trochus</strong>, your profit is <strong>5,000 Trochus</strong>.</li>
+                    <li>This strategy works best when you know the market trends and can predict when an item’s price will rise.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Negotiate for Lower Prices</strong>:
+                <ul>
+                    <li>Always try to negotiate when buying items. Even a small discount can increase your profit margin. For example, if you negotiate a melee down from <strong>12,000 Trochus</strong> to <strong>10,000 Trochus</strong>, you save <strong>2,000 Trochus</strong> upfront.</li>
+                    <li>This extra savings can be reinvested into more trades, increasing your overall profits.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Set Higher Selling Prices</strong>:
+                <ul>
+                    <li>When selling an item, set the price slightly higher than your target. This gives you room to negotiate without losing your desired profit. For example, if you want to sell a melee for <strong>15,000 Trochus</strong>, list it for <strong>17,000 Trochus</strong>. If the buyer negotiates down to <strong>16,000 Trochus</strong>, you still earn more than your target.</li>
+                    <li>This strategy ensures you don’t undersell your items.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Invest in High-Demand Items</strong>:
+                <ul>
+                    <li>Items like <strong>ultras</strong> (1m Trochus+) are always in demand for basing/war. Investing in these items can lead to consistent profits. For example, if you buy an ultra for <strong>1.2M Trochus</strong> and sell it for <strong>1.5M Trochus</strong>, your profit is <strong>300,000 Trochus</strong>.</li>
+                    <li>These items are less volatile and tend to hold their value, making them a safer investment.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Loss Section -->
+    <div class="loss-section">
+        <h3>📉 Loss Guide</h3>
+        <p class="loss-text">
+            Loss occurs when you sell an item for less Trochus than you paid for it. Here’s how to avoid losses:
+        </p>
+        <ul>
+            <li>
+                <strong>Research Item Values</strong>:
+                <ul>
+                    <li>Always check the current market value of items before trading. For example, if a melee is typically worth <strong>15,000 Trochus</strong>, don’t buy it for <strong>20,000 Trochus</strong> unless you’re confident it will increase in value.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Set Limits</strong>:
+                <ul>
+                    <li>Decide the maximum Trochus you’re willing to spend on an item and stick to it. For example, if you set a limit of <strong>10,000 Trochus</strong> for a melee, don’t go over that amount, even if the seller pressures you.</li>
+                    <li>This prevents overspending and minimizes potential losses.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Cut Your Losses</strong>:
+                <ul>
+                    <li>If an item’s value is dropping, sell it quickly to minimize your loss. For example, if you bought a melee for <strong>15,000 Trochus</strong> and its value drops to <strong>12,000 Trochus</strong>, selling it now means you only lose <strong>3,000 Trochus</strong> instead of waiting and losing more.</li>
+                    <li>This strategy is especially important during market downturns.</li>
+                </ul>
+            </li>
+            <li>
+                <strong>Avoid Emotional Trading</strong>:
+                <ul>
+                    <li>Don’t let fear or greed dictate your trades. Stick to your strategy. For example, if you panic-sell an item because its price is dropping, you might miss out on a rebound later.</li>
+                    <li>Stay calm and make decisions based on logic, not emotions.</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 azrxc. All rights reserved.</p>
+        <p class="footer-links">
+            <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        </p>
+    </footer>
+
+    <script>
+        // Toggle dark mode
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // Load saved trades from localStorage
+        let trades = JSON.parse(localStorage.getItem("trades")) || [];
+
+        // Display saved trades
+        function displayTrades() {
+            const tradeList = document.getElementById('tradeList');
+            tradeList.innerHTML = '';
+            trades.forEach((trade, index) => {
+                const profit = trade.sellPrice - trade.buyPrice;
+                tradeList.innerHTML += `
+                    <li class="trade-item">
+                        <div>
+                            <strong>${trade.itemName}</strong>:
+                            Buy Price: ${trade.buyPrice.toLocaleString()} Trochus,
+                            Sell Price: ${trade.sellPrice.toLocaleString()} Trochus,
+                            <span class="${profit >= 0 ? 'profit' : 'loss'}">
+                                ${profit >= 0 ? `Profit: ${profit.toLocaleString()} Trochus` : `Loss: ${Math.abs(profit).toLocaleString()} Trochus`}
+                            </span>
+                        </div>
+                        <div class="actions">
+                            <button class="edit-btn" onclick="editTrade(${index})">Edit</button>
+                            <button onclick="deleteTrade(${index})">Delete</button>
+                        </div>
+                    </li>
+                `;
+            });
+        }
+
+        // Add a new trade
+        function addTrade() {
+            const itemName = document.getElementById('itemName').value;
+            const buyPrice = parseFloat(document.getElementById('buyPriceLog').value);
+            const sellPrice = parseFloat(document.getElementById('sellPriceLog').value);
+
+            if (!itemName || isNaN(buyPrice) || isNaN(sellPrice)) {
+                alert("Please fill in all fields with valid data.");
+                return;
+            }
+
+            trades.push({ itemName, buyPrice, sellPrice });
+            localStorage.setItem("trades", JSON.stringify(trades));
+            displayTrades();
+
+            // Clear inputs
+            document.getElementById('itemName').value = '';
+            document.getElementById('buyPriceLog').value = '';
+            document.getElementById('sellPriceLog').value = '';
+        }
+
+        // Edit a trade
+        function editTrade(index) {
+            const trade = trades[index];
+            document.getElementById('itemName').value = trade.itemName;
+            document.getElementById('buyPriceLog').value = trade.buyPrice;
+            document.getElementById('sellPriceLog').value = trade.sellPrice;
+
+            // Remove the trade from the list
+            trades.splice(index, 1);
+            localStorage.setItem("trades", JSON.stringify(trades));
+            displayTrades();
+        }
+
+        // Delete a trade
+        function deleteTrade(index) {
+            trades.splice(index, 1);
+            localStorage.setItem("trades", JSON.stringify(trades));
+            displayTrades();
+        }
+
+        // Initial display of trades
+        displayTrades();
+    </script>
+</body>
+</html>
