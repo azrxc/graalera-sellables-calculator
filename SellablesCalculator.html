@@ -69,6 +69,22 @@
             background-color: rgba(255, 255, 255, 0.2);
         }
 
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: gray;
+        }
+
+        footer a {
+            color: gray;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Table Styles */
         table {
             margin: 20px auto;
@@ -436,7 +452,8 @@
     <!-- Navigation Menu -->
     <nav>
         <ul>
-            <li><a href="index.html">Sellables Calculator</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="SellablesCalculator.html">Sellables Calculator</a></li>
             <li><a href="RatioHistory.html">Ratio History</a></li>
             <li><a href="TradingGuide.html">Trading Guide</a></li>
             <li><a href="ProfitLoss.html">Profit and Loss</a></li>
@@ -628,14 +645,17 @@
         </p>
     </div>
     
-    <p style="margin-top: 30px; font-size: 14px; color: gray;">&copy; 2025 azrxc. All rights reserved.</p>
-    <p class="footer-links">
-        <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
-    </p>
-    
     <!-- Dark Mode Button -->
     <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
-    
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 azrxc. All rights reserved.</p>
+        <p class="footer-links">
+            <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        </p>
+    </footer>
+
     <script>
         // Initialize user data
         let userData = JSON.parse(localStorage.getItem("userData")) || { name: null };
