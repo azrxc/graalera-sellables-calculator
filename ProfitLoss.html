@@ -124,6 +124,7 @@
             cursor: pointer;
             transition: background 0.3s, transform 0.3s;
             margin: 5px;
+            width: 100%; /* Full width on mobile */
         }
 
         .trade-log-section button:hover {
@@ -142,6 +143,7 @@
             align-items: center;
             padding: 10px;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            flex-wrap: wrap; /* Wrap content on mobile */
         }
 
         .trade-log-section .trade-item:hover {
@@ -263,6 +265,20 @@
                 padding: 6px 8px; /* Smaller padding for mobile */
                 font-size: 0.75rem; /* Smaller font size for mobile */
             }
+
+            .trade-log-section button {
+                width: 100%; /* Full width on mobile */
+                margin: 5px 0; /* Adjust margin for stacked buttons */
+            }
+
+            .trade-log-section .trade-item {
+                flex-direction: column; /* Stack trade items vertically */
+                align-items: flex-start;
+            }
+
+            .trade-log-section .trade-item .actions {
+                margin-top: 10px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -277,6 +293,10 @@
             nav ul li a {
                 padding: 5px 6px; /* Even smaller padding for mobile */
                 font-size: 0.7rem; /* Even smaller font size for mobile */
+            }
+
+            .trade-log-section button {
+                font-size: 0.9rem; /* Smaller font size for buttons */
             }
         }
     </style>
