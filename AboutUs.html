@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Sellables Calculator</title>
     <style>
-        /* General Styles */
+        /* General Styles (Synced with First Code) */
         body {
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background: #FFD700;
-            color: #000;
+            background: #FFD700; /* Yellow background */
+            color: #000; /* Black text */
+            line-height: 1.6;
             animation: fadeIn 1s ease-in-out;
         }
 
@@ -23,7 +24,7 @@
         .container {
             max-width: 800px;
             margin: 50px auto;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
@@ -77,7 +78,67 @@
             transform: scale(1.05);
         }
 
-        /* Mobile Styles */
+        /* Navigation Menu (Synced with First Code) */
+        nav {
+            background: #000; /* Black navigation */
+            padding: 10px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: #FFD700; /* Yellow text */
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
+            font-size: 0.9rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 215, 0, 0.2); /* Yellow hover effect */
+            transform: scale(1.1);
+        }
+
+        /* Footer (Synced with First Code) */
+        footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #000;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        footer a {
+            color: #000;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile Styles (Synced with First Code) */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
@@ -91,10 +152,45 @@
             .feature-list li {
                 padding: 10px;
             }
+
+            nav ul {
+                gap: 6px; /* Smaller gap for mobile */
+            }
+
+            nav ul li a {
+                padding: 6px 8px; /* Smaller padding for mobile */
+                font-size: 0.75rem; /* Smaller font size for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .about-heading {
+                font-size: 1.8rem;
+            }
+
+            nav ul li a {
+                padding: 5px 6px; /* Even smaller padding for mobile */
+                font-size: 0.7rem; /* Even smaller font size for mobile */
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation Menu -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="SellablesCalculator.html">Sellables Calculator</a></li>
+            <li><a href="RatioHistory.html">Ratio History</a></li>
+            <li><a href="TradingGuide.html">Trading Guide</a></li>
+            <li><a href="ProfitLoss.html">Profit and Loss</a></li>
+        </ul>
+    </nav>
+
     <div class="container">
         <h1 class="about-heading">Sellables Calculator – From Traders to Traders</h1>
         <p><strong>Welcome to Sellables Calculator!</strong></p>
@@ -113,5 +209,13 @@
         
         <p>We are continuously <span class="highlight">improving</span> Sellables Calculator to enhance your trading experience. If you find a bug, have suggestions, or just want to chat about trading, feel free to engage with the community!</p>
     </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 azrxc. All rights reserved.</p>
+        <p class="footer-links">
+            <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
+        </p>
+    </footer>
 </body>
 </html>
