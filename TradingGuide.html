@@ -1,40 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trading Guide</title>
     <style>
         /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: #FFD700;
+            color: #000;
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
 
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f4f4f4;
-        }
-
         h1, h2, h3 {
-            color: #007BFF;
-        }
-
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3 {
-            color: #1e90ff;
+            color: #000;
         }
 
         a {
-            color: #007BFF;
+            color: #000;
             text-decoration: none;
-        }
-
-        body.dark-mode a {
-            color: #1e90ff;
+            font-weight: bold;
         }
 
         a:hover {
@@ -49,75 +37,36 @@
 
         .section {
             margin-bottom: 40px;
-            animation: fadeIn 1s ease-in-out;
         }
 
         .section h2 {
-            border-bottom: 2px solid #007BFF;
+            border-bottom: 2px solid #000;
             padding-bottom: 10px;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        body.dark-mode .section h2 {
-            border-color: #1e90ff;
         }
 
         .tip {
-            background: white;
+            background: rgba(0, 0, 0, 0.1);
             padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
-            transition: background 0.5s, box-shadow 0.5s;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        body.dark-mode .tip {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
         }
 
         .tip h3 {
             margin-top: 0;
-            color: #007BFF;
-        }
-
-        body.dark-mode .tip h3 {
-            color: #1e90ff;
+            color: #000;
         }
 
         .tip p {
             margin: 10px 0;
-        }
-
-        .dark-mode-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .dark-mode-btn:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        body.dark-mode .dark-mode-btn {
-            background-color: #333;
+            color: #000;
         }
 
         /* Navigation Menu */
         nav {
-            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            background: #000;
             padding: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -137,28 +86,29 @@
         }
 
         nav ul li a {
-            color: white;
+            color: #FFD700;
             text-decoration: none;
             font-weight: bold;
             padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.1);
         }
 
         /* Footer */
         footer {
             margin-top: 30px;
             font-size: 14px;
-            color: gray;
+            color: #000;
             text-align: center;
         }
 
         footer a {
-            color: gray;
+            color: #000;
             text-decoration: none;
         }
 
@@ -168,42 +118,31 @@
 
         /* Interactive Tutorial Styles */
         .interactive-tutorial {
-            background: white;
+            background: rgba(0, 0, 0, 0.1);
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
-            transition: background 0.5s, box-shadow 0.5s;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        body.dark-mode .interactive-tutorial {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
         }
 
         .interactive-tutorial h3 {
             margin-top: 0;
-            color: #007BFF;
-        }
-
-        body.dark-mode .interactive-tutorial h3 {
-            color: #1e90ff;
+            color: #000;
         }
 
         .interactive-tutorial button {
-            background-color: #007BFF;
-            color: white;
+            background: #000;
+            color: #FFD700;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
             margin-top: 10px;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .interactive-tutorial button:hover {
-            background-color: #0056b3;
+            background: #333;
             transform: scale(1.05);
         }
 
@@ -221,40 +160,72 @@
         }
 
         .quiz-options button {
-            background-color: #007BFF;
-            color: white;
+            background: #000;
+            color: #FFD700;
             padding: 10px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: background 0.3s, transform 0.3s;
         }
 
         .quiz-options button:hover {
-            background-color: #0056b3;
+            background: #333;
             transform: scale(1.05);
         }
 
         .quiz-result {
             font-size: 1.2rem;
             font-weight: bold;
-            color: #007BFF;
+            color: #000;
             margin-top: 20px;
         }
 
-        body.dark-mode .quiz-result {
-            color: #1e90ff;
-        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+            h2 {
+                font-size: 1.8rem;
+            }
 
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .section {
+                margin-bottom: 30px;
+            }
+
+            .tip {
+                padding: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center; /* Center align menu items */
+            }
+
+            nav ul li a {
+                padding: 8px 10px;
+                width: 100%; /* Full width for mobile menu items */
+                text-align: center; /* Center text */
+            }
+
+            .quiz-options {
+                flex-direction: column;
+            }
+
+            .quiz-options button {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -269,9 +240,6 @@
             <li><a href="ProfitLoss.html">Profit and Loss</a></li>
         </ul>
     </nav>
-
-    <!-- Dark Mode Button -->
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
 
     <div class="container">
         <h1>Trading Guide</h1>
@@ -392,11 +360,6 @@
     </footer>
 
     <script>
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
-
         // Quiz Questions and Answers
         const quizQuestions = [
             {
