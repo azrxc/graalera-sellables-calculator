@@ -9,37 +9,23 @@
     <style>
         /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
-            color: #333;
+            background: #FFD700;
+            color: #000;
             margin: 0;
             padding: 0;
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f4f4f4;
         }
 
         h1, h2, h3 {
-            color: #007BFF;
-        }
-
-        body.dark-mode h1,
-        body.dark-mode h2,
-        body.dark-mode h3 {
-            color: #1e90ff;
+            color: #000;
+            margin: 0;
         }
 
         a {
-            color: #007BFF;
+            color: #000;
             text-decoration: none;
-        }
-
-        body.dark-mode a {
-            color: #1e90ff;
+            font-weight: bold;
         }
 
         a:hover {
@@ -52,77 +38,41 @@
             padding: 20px;
         }
 
-        .section {
-            margin-bottom: 40px;
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        .section h2 {
-            border-bottom: 2px solid #007BFF;
-            padding-bottom: 10px;
-            animation: slideIn 0.5s ease-in-out;
-        }
-
-        body.dark-mode .section h2 {
-            border-color: #1e90ff;
-        }
-
         .tip {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             margin-bottom: 20px;
-            transition: background 0.5s, box-shadow 0.5s;
-            animation: fadeIn 1s ease-in-out;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        body.dark-mode .tip {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 8px rgba(255, 255, 255, 0.1);
+        .tip:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
         }
 
-        .tip h3 {
-            margin-top: 0;
-            color: #007BFF;
-        }
-
-        body.dark-mode .tip h3 {
-            color: #1e90ff;
-        }
-
-        .tip p {
-            margin: 10px 0;
-        }
-
-        .dark-mode-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
-            color: white;
+        .btn {
+            display: inline-block;
+            background: #000;
+            color: #FFD700;
             padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-            animation: fadeIn 1s ease-in-out;
+            border-radius: 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.3s;
         }
 
-        .dark-mode-btn:hover {
-            background-color: #0056b3;
+        .btn:hover {
+            background: #333;
             transform: scale(1.05);
-        }
-
-        body.dark-mode .dark-mode-btn {
-            background-color: #333;
         }
 
         /* Navigation Menu */
         nav {
-            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            background: #000;
             padding: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -142,48 +92,67 @@
         }
 
         nav ul li a {
-            color: white;
+            color: #FFD700;
             text-decoration: none;
             font-weight: bold;
             padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 215, 0, 0.2);
+            transform: scale(1.1);
         }
 
-        /* Footer */
         footer {
             margin-top: 30px;
             font-size: 14px;
-            color: gray;
+            color: #000;
             text-align: center;
-        }
-
-        footer a {
-            color: gray;
-            text-decoration: none;
         }
 
         footer a:hover {
             text-decoration: underline;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
         /* Mobile Styles */
         @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .tip {
+                padding: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li a {
+                padding: 8px 10px;
+            }
+
+            footer {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
             h1 {
                 font-size: 24px;
             }
@@ -200,65 +169,12 @@
                 padding: 10px;
             }
 
-            .section {
-                margin-bottom: 20px;
-            }
-
             .tip {
                 padding: 10px;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            nav ul li a {
-                padding: 8px 10px;
-            }
-
-            .dark-mode-btn {
-                padding: 8px 16px;
-                font-size: 14px;
-            }
-
-            footer {
-                font-size: 12px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 20px;
-            }
-
-            h2 {
-                font-size: 18px;
-            }
-
-            h3 {
-                font-size: 16px;
-            }
-
-            .container {
-                padding: 5px;
-            }
-
-            .section {
-                margin-bottom: 15px;
-            }
-
-            .tip {
-                padding: 8px;
-            }
-
             nav ul li a {
                 padding: 6px 8px;
-            }
-
-            .dark-mode-btn {
-                padding: 6px 12px;
-                font-size: 12px;
             }
 
             footer {
@@ -278,9 +194,6 @@
             <li><a href="ProfitLoss.html">Profit and Loss</a></li>
         </ul>
     </nav>
-
-    <!-- Dark Mode Button -->
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
 
     <div class="container">
         <h1>Welcome to Sellables Calculator</h1>
@@ -325,12 +238,6 @@
             <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
         </p>
     </footer>
-
-    <script>
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
-        }
-    </script>
+    
 </body>
 </html>
