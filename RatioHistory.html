@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ratio History</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         /* General Styles */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             text-align: center;
-            background-color: #f4f4f4;
-            color: #333;
+            background: #FFD700;
+            color: #000;
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            transition: background-color 0.5s, color 0.5s;
-        }
-
-        body.dark-mode {
-            background-color: #1a1a1a;
-            color: #f4f4f4;
         }
 
         h2 {
             margin-top: 20px;
             font-size: 2.5rem;
-            color: #007BFF;
-            animation: fadeIn 1.5s ease-in-out;
+            color: #000;
         }
 
-        body.dark-mode h2 {
-            color: #1e90ff;
+        a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         /* Navigation Menu */
         nav {
-            background: linear-gradient(135deg, #007BFF, #00a8ff);
+            background: #000;
             padding: 10px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -56,110 +63,58 @@
         }
 
         nav ul li a {
-            color: white;
+            color: #FFD700;
             text-decoration: none;
             font-weight: bold;
             padding: 10px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 25px;
+            transition: background 0.3s, transform 0.3s;
         }
 
         nav ul li a:hover {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 215, 0, 0.2);
             transform: scale(1.1);
-        }
-
-        /* Dark Mode Button */
-        .dark-mode-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #007BFF;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-
-        .dark-mode-btn:hover {
-            background-color: #0056b3;
-            transform: scale(1.05);
-        }
-
-        body.dark-mode .dark-mode-btn {
-            background-color: #333;
         }
 
         /* Current Month */
         #currentMonth {
             font-size: 1.8rem;
-            color: #007BFF;
+            color: #000;
             margin-top: 20px;
-            animation: slideIn 1s ease-in-out;
-        }
-
-        body.dark-mode #currentMonth {
-            color: #1e90ff;
         }
 
         /* Chart Container */
         .chart-container {
             margin: 20px auto;
             max-width: 800px;
-            background: white;
+            background: rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            transition: background 0.5s, box-shadow 0.5s;
-        }
-
-        body.dark-mode .chart-container {
-            background: #2c2c2c;
-            box-shadow: 0px 4px 12px rgba(255, 255, 255, 0.1);
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         /* Guide Book Section */
         .guide-book {
             margin: 20px auto;
             max-width: 800px;
-            background: #f9f3e6;
+            background: rgba(0, 0, 0, 0.1);
             padding: 20px;
             border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            border: 2px solid #d4af37;
-            position: relative;
-            transition: background 0.5s, box-shadow 0.5s;
-            overflow: hidden;
-        }
-
-        body.dark-mode .guide-book {
-            background: #2c2c2c;
-            border-color: #1e90ff;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            border: 2px solid #000;
         }
 
         .guide-book h3 {
             margin-top: 0;
-            color: #007BFF;
+            color: #000;
             font-size: 1.5rem;
             text-align: center;
             margin-bottom: 20px;
-            animation: slideIn 1s ease-in-out;
-        }
-
-        body.dark-mode .guide-book h3 {
-            color: #1e90ff;
         }
 
         .guide-book p {
             line-height: 1.6;
-            color: #555;
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        body.dark-mode .guide-book p {
-            color: #ddd;
+            color: #000;
         }
 
         .guide-book ul {
@@ -176,11 +131,11 @@
         footer {
             margin-top: 30px;
             font-size: 14px;
-            color: gray;
+            color: #000;
         }
 
         footer a {
-            color: gray;
+            color: #000;
             text-decoration: none;
         }
 
@@ -188,15 +143,28 @@
             text-decoration: underline;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
 
-        @keyframes slideIn {
-            from { transform: translateY(20px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            #currentMonth {
+                font-size: 1.5rem;
+            }
+
+            .chart-container, .guide-book {
+                padding: 15px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            nav ul li a {
+                padding: 8px 10px;
+            }
         }
     </style>
 </head>
@@ -211,9 +179,6 @@
             <li><a href="ProfitLoss.html">Profit and Loss</a></li>
         </ul>
     </nav>
-
-    <!-- Dark Mode Button -->
-    <button class="dark-mode-btn" onclick="toggleDarkMode()">Dark Mode</button>
 
     <h2>Ratio History</h2>
 
@@ -333,11 +298,11 @@
                     datasets: [{
                         label: '1 Trochus : $X Gralats',
                         data: historicalData.map(entry => entry.ratio),
-                        borderColor: '#007BFF',
-                        backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                        borderColor: '#000',
+                        backgroundColor: 'rgba(0, 0, 0, 0.1)',
                         borderWidth: 2,
                         pointRadius: 5,
-                        pointBackgroundColor: '#007BFF',
+                        pointBackgroundColor: '#000',
                     }]
                 },
                 options: {
@@ -352,11 +317,6 @@
                     maintainAspectRatio: false,
                 }
             });
-        }
-
-        // Toggle dark mode
-        function toggleDarkMode() {
-            document.body.classList.toggle("dark-mode");
         }
 
         // Initial render
