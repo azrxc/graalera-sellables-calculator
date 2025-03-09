@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trading Guide</title>
     <style>
-        /* General Styles */
+        /* General Styles (Synced with First Code) */
         body {
             font-family: 'Poppins', sans-serif;
-            background: #FFD700;
-            color: #000;
+            background: #FFD700; /* Yellow background */
+            color: #000; /* Black text */
             margin: 0;
             padding: 0;
             line-height: 1.6;
@@ -20,12 +20,14 @@
         }
 
         a {
-            color: #000;
+            color: #000; /* Black links */
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
 
         a:hover {
+            color: #333; /* Darker black on hover */
             text-decoration: underline;
         }
 
@@ -45,7 +47,7 @@
         }
 
         .tip {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             padding: 15px;
             border-radius: 12px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -62,9 +64,9 @@
             color: #000;
         }
 
-        /* Navigation Menu */
+        /* Navigation Menu (Synced with Calculator Page) */
         nav {
-            background: #000;
+            background: #000; /* Black navigation */
             padding: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
@@ -78,7 +80,8 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         nav ul li {
@@ -86,24 +89,29 @@
         }
 
         nav ul li a {
-            color: #FFD700;
+            color: #FFD700; /* Yellow text */
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 25px;
             transition: background 0.3s, transform 0.3s;
+            font-size: 0.9rem;
         }
 
         nav ul li a:hover {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.2); /* Yellow hover effect */
             transform: scale(1.1);
         }
 
-        /* Footer */
+        /* Footer (Synced with First Code) */
         footer {
             margin-top: 30px;
             font-size: 14px;
             color: #000;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             text-align: center;
         }
 
@@ -118,7 +126,7 @@
 
         /* Interactive Tutorial Styles */
         .interactive-tutorial {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -157,6 +165,7 @@
         .quiz-options {
             display: flex;
             gap: 10px;
+            justify-content: center;
         }
 
         .quiz-options button {
@@ -179,20 +188,21 @@
             font-weight: bold;
             color: #000;
             margin-top: 20px;
+            text-align: center;
         }
 
-        /* Mobile Styles */
+        /* Mobile Styles (Synced with First Code) */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2rem; /* Matched with calculator page */
             }
 
             h2 {
-                font-size: 1.8rem;
+                font-size: 1.8rem; /* Matched with calculator page */
             }
 
             h3 {
-                font-size: 1.5rem;
+                font-size: 1.5rem; /* Matched with calculator page */
             }
 
             .container {
@@ -208,23 +218,48 @@
             }
 
             nav ul {
-                flex-direction: column;
-                gap: 10px;
-                align-items: center; /* Center align menu items */
+                gap: 6px; /* Smaller gap for mobile */
             }
 
             nav ul li a {
-                padding: 8px 10px;
-                width: 100%; /* Full width for mobile menu items */
-                text-align: center; /* Center text */
+                padding: 6px 8px; /* Smaller padding for mobile */
+                font-size: 0.75rem; /* Smaller font size for mobile */
             }
 
             .quiz-options {
                 flex-direction: column;
+                align-items: center;
             }
 
             .quiz-options button {
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem; /* Matched with calculator page */
+            }
+
+            h2 {
+                font-size: 1.5rem; /* Matched with calculator page */
+            }
+
+            h3 {
+                font-size: 1.2rem; /* Matched with calculator page */
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .tip {
+                padding: 10px;
+            }
+
+            nav ul li a {
+                padding: 5px 6px; /* Even smaller padding for mobile */
+                font-size: 0.7rem; /* Even smaller font size for mobile */
             }
         }
     </style>
