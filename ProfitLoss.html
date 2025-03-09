@@ -6,7 +6,7 @@
     <title>Profit and Loss Guide</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* General Styles (Synced with First Code) */
+        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
@@ -14,7 +14,7 @@
             color: #000; /* Black text */
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             line-height: 1.6;
         }
 
@@ -37,12 +37,13 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 100%; /* Ensure it doesn't exceed viewport width */
             margin: 0 auto;
             padding: 20px;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
-        /* Navigation Menu (Synced with First Code) */
+        /* Navigation Menu */
         nav {
             background: #000; /* Black navigation */
             padding: 10px;
@@ -84,11 +85,12 @@
         /* Trade Log Section */
         .trade-log-section {
             margin: 20px auto;
-            max-width: 800px;
+            max-width: 100%; /* Ensure it doesn't exceed viewport width */
             background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .trade-log-section h3 {
@@ -113,6 +115,7 @@
             margin-bottom: 10px;
             background: rgba(255, 255, 255, 0.1);
             color: #000;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .trade-log-section button {
@@ -125,6 +128,7 @@
             transition: background 0.3s, transform 0.3s;
             margin: 5px;
             width: 100%; /* Full width on mobile */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .trade-log-section button:hover {
@@ -183,10 +187,11 @@
         /* Profit and Loss Sections */
         .profit-section, .loss-section {
             margin: 20px auto;
-            max-width: 800px;
+            max-width: 100%; /* Ensure it doesn't exceed viewport width */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         .profit-section {
@@ -227,7 +232,7 @@
             margin-bottom: 10px;
         }
 
-        /* Footer (Synced with First Code) */
+        /* Footer */
         footer {
             margin-top: 30px;
             font-size: 14px;
@@ -236,6 +241,7 @@
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box; /* Include padding in width calculation */
         }
 
         footer a {
@@ -247,7 +253,7 @@
             text-decoration: underline;
         }
 
-        /* Mobile Styles (Synced with First Code) */
+        /* Mobile Styles */
         @media (max-width: 768px) {
             h2 {
                 font-size: 2rem;
