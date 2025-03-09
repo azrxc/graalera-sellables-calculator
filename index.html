@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sellables</title>
+    <title>Home</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
     <style>
@@ -11,24 +11,27 @@
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: #FFD700;
-            color: #000;
+            background: #FFD700; /* Yellow background */
+            color: #000; /* Black text */
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         h1, h2, h3 {
-            color: #000;
-            margin: 0;
+            color: #000; /* Black headings */
+            margin: 0 0 20px 0;
         }
 
         a {
-            color: #000;
+            color: #000; /* Black links */
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
 
         a:hover {
+            color: #333; /* Darker black on hover */
             text-decoration: underline;
         }
 
@@ -39,7 +42,7 @@
         }
 
         .tip {
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
@@ -54,8 +57,8 @@
 
         .btn {
             display: inline-block;
-            background: #000;
-            color: #FFD700;
+            background: #000; /* Black button */
+            color: #FFD700; /* Yellow text */
             padding: 10px 20px;
             border-radius: 25px;
             text-transform: uppercase;
@@ -64,13 +67,13 @@
         }
 
         .btn:hover {
-            background: #333;
+            background: #333; /* Darker black on hover */
             transform: scale(1.05);
         }
 
         /* Navigation Menu */
         nav {
-            background: #000;
+            background: #000; /* Black navigation */
             padding: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
@@ -84,7 +87,8 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         nav ul li {
@@ -92,24 +96,30 @@
         }
 
         nav ul li a {
-            color: #FFD700;
+            color: #FFD700; /* Yellow text */
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 25px;
             transition: background 0.3s, transform 0.3s;
+            font-size: 0.9rem;
         }
 
         nav ul li a:hover {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.2); /* Yellow hover effect */
             transform: scale(1.1);
         }
 
+        /* Footer */
         footer {
             margin-top: 30px;
             font-size: 14px;
-            color: #000;
+            color: #000; /* Black text */
             text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
         }
 
         footer a:hover {
@@ -119,15 +129,15 @@
         /* Mobile Styles */
         @media (max-width: 768px) {
             h1 {
-                font-size: 28px;
+                font-size: 2rem;
             }
 
             h2 {
-                font-size: 24px;
+                font-size: 1.8rem;
             }
 
             h3 {
-                font-size: 20px;
+                font-size: 1.5rem;
             }
 
             .container {
@@ -139,12 +149,17 @@
             }
 
             nav ul {
-                flex-direction: column;
-                gap: 10px;
+                gap: 8px;
             }
 
             nav ul li a {
-                padding: 8px 10px;
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
             }
 
             footer {
@@ -154,15 +169,15 @@
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 24px;
+                font-size: 1.8rem;
             }
 
             h2 {
-                font-size: 20px;
+                font-size: 1.5rem;
             }
 
             h3 {
-                font-size: 18px;
+                font-size: 1.2rem;
             }
 
             .container {
@@ -174,11 +189,30 @@
             }
 
             nav ul li a {
-                padding: 6px 8px;
+                padding: 5px 8px;
+                font-size: 0.75rem;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
             }
 
             footer {
                 font-size: 10px;
+            }
+        }
+
+        /* Features Section Grid Layout */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .features-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -197,7 +231,7 @@
 
     <div class="container">
         <h1>Welcome to Sellables Calculator</h1>
-        <p>Your ultimate resource for trading in Era. Whether you're a beginner or an experienced trader, we provide the tools and Guide you need to succeed.</p>
+        <p>Your ultimate resource for trading in Era. Whether you're a beginner or an experienced trader, we provide the tools and guides you need to succeed.</p>
 
         <!-- Introduction -->
         <div class="section">
@@ -208,25 +242,27 @@
         <!-- Features -->
         <div class="section">
             <h2>Features</h2>
-            <div class="tip">
-                <h3>Sellables Calculator</h3>
-                <p>Use our Sellables Calculator to determine the value of your items and convert them into Trochus based on a customizable ratio.</p>
-                <a href="index.html" class="btn">Go to Calculator</a>
-            </div>
-            <div class="tip">
-                <h3>Ratio History</h3>
-                <p>Track the historical trends of the Trochus-to-Gralat ratio to make informed trading decisions.</p>
-                <a href="RatioHistory.html" class="btn">View Ratio History</a>
-            </div>
-            <div class="tip">
-                <h3>Trading Guide</h3>
-                <p>Learn the basics and advanced strategies of trading in Era with our comprehensive guide.</p>
-                <a href="TradingGuide.html" class="btn">Read Trading Guide</a>
-            </div>
-            <div class="tip">
-                <h3>Profit and Loss</h3>
-                <p>Log your trades and analyze your profits and losses to improve your trading strategy.</p>
-                <a href="ProfitLoss.html" class="btn">Track Profit and Loss</a>
+            <div class="features-grid">
+                <div class="tip">
+                    <h3>Sellables Calculator</h3>
+                    <p>Use our Sellables Calculator to determine the value of your items and convert them into Trochus based on a customizable ratio.</p>
+                    <a href="index.html" class="btn">Go to Calculator</a>
+                </div>
+                <div class="tip">
+                    <h3>Ratio History</h3>
+                    <p>Track the historical trends of the Trochus-to-Gralat ratio to make informed trading decisions.</p>
+                    <a href="RatioHistory.html" class="btn">View Ratio History</a>
+                </div>
+                <div class="tip">
+                    <h3>Trading Guide</h3>
+                    <p>Learn the basics and advanced strategies of trading in Era with our comprehensive guide.</p>
+                    <a href="TradingGuide.html" class="btn">Read Trading Guide</a>
+                </div>
+                <div class="tip">
+                    <h3>Profit and Loss</h3>
+                    <p>Log your trades and analyze your profits and losses to improve your trading strategy.</p>
+                    <a href="ProfitLoss.html" class="btn">Track Profit and Loss</a>
+                </div>
             </div>
         </div>
     </div>
@@ -238,6 +274,5 @@
             <a href="AboutUs.html">About Us</a> | <a href="ContactUs.html">Contact Us</a> | <a href="PrivacyPolicy.html">Privacy Policy</a> | <a href="TermsConditions.html">Terms & Conditions</a>
         </p>
     </footer>
-    
 </body>
 </html>
