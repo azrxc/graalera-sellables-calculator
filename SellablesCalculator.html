@@ -80,6 +80,25 @@
             transform: scale(1.1);
         }
 
+        /* Mobile Styles for Navigation Menu */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 6px; /* Smaller gap for mobile */
+            }
+
+            nav ul li a {
+                padding: 6px 8px; /* Smaller padding for mobile */
+                font-size: 0.75rem; /* Smaller font size for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                padding: 5px 6px; /* Even smaller padding for mobile */
+                font-size: 0.7rem; /* Even smaller font size for mobile */
+            }
+        }
+
         /* Table Styles */
         .table-container {
             overflow-x: auto; /* Allow horizontal scrolling on small screens */
@@ -218,11 +237,6 @@
                 padding: 15px;
             }
 
-            nav ul li a {
-                padding: 6px 10px;
-                font-size: 0.8rem;
-            }
-
             .total-box h3 {
                 font-size: 0.9rem;
             }
@@ -243,11 +257,6 @@
 
             .container {
                 padding: 10px;
-            }
-
-            nav ul li a {
-                padding: 5px 8px;
-                font-size: 0.75rem;
             }
 
             .total-box h3 {
