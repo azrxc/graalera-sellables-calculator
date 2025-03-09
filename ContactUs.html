@@ -5,92 +5,176 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact Us - Sellables.com</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background: #FFD700;
+            color: #000;
             animation: fadeIn 1s ease-in-out;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .contact-heading {
-            color: #007bff;
-            font-size: 28px;
+            color: #000;
+            font-size: 2.5rem;
             font-weight: bold;
             text-align: left;
-            border-left: 5px solid #007bff;
+            border-left: 5px solid #000;
             padding-left: 15px;
             margin-bottom: 20px;
+            animation: fadeUp 1s ease-in-out forwards;
         }
-        .subscribe-button {
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        p {
+            line-height: 1.6;
+            color: #000;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+        }
+
+        .contact-info a {
+            color: #000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .support-button {
             display: inline-flex;
             align-items: center;
             gap: 10px;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: white;
-            color: #ff0000;
+            background: #000;
+            color: #FFD700;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 20px;
+            border-radius: 25px;
             text-decoration: none;
-            transition: 0.3s ease-in-out;
-            border: 2px solid #ff0000;
+            transition: background 0.3s, transform 0.3s;
             animation: pulse 1.5s infinite;
         }
+
+        .support-button:hover {
+            background: #333;
+            transform: scale(1.05);
+        }
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
         .faq-section {
             margin-top: 40px;
             padding: 20px;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             animation: slideIn 1s ease-in-out;
         }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
+
+        .faq-section h2 {
+            color: #000;
+            font-size: 2rem;
+            margin-bottom: 20px;
         }
+
         .faq {
             margin-top: 10px;
             padding: 15px;
             border-radius: 8px;
-            background: #f9f9f9;
+            background: rgba(0, 0, 0, 0.1);
             box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-            transition: 0.3s;
+            transition: background 0.3s, transform 0.3s;
             cursor: pointer;
         }
+
         .faq:hover {
-            background: #eef5ff;
+            background: rgba(0, 0, 0, 0.2);
             transform: scale(1.02);
+        }
+
+        .faq p {
+            margin: 0;
+        }
+
+        .faq p:first-child {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .faq p:last-child {
+            margin-top: 10px;
+            color: #000;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                margin: 20px auto;
+            }
+
+            .contact-heading {
+                font-size: 2rem;
+            }
+
+            .faq-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .faq {
+                padding: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 class="contact-heading">Contact Us – We're Here to Help</h1>
-        <p>Have any questions, feedback, or business inquiries? Whether you're looking for assistance with the Sellables Calculator, partnership opportunities, or general inquiries, we are always happy to assist you!</p>
+        <p>Have any questions, feedback, or business inquiries? Whether you're looking for assistance with the Sellables Calculator, partnership opportunities, or general inquiries, we're always happy to assist you!</p>
         <p>If you encounter any bugs or issues with our website, please let us know. Your feedback helps us improve and provide a better experience for all users.</p>
         <div class="contact-info">
-            <p><strong>Email:</strong> azrele2@gmail.com</p>
-            <p><strong>YouTube:</strong></p>
-            <a href="https://www.youtube.com/@azrxc" target="_blank" class="subscribe-button">Subscribe</a>
+            <p><strong>Email:</strong> <a href="mailto:azrele2@gmail.com">azrele2@gmail.com</a></p>
+            <p><strong>YouTube:</strong> <a href="https://www.youtube.com/@azrxc" target="_blank">@azrxc</a></p>
+            <p><strong>Support Us:</strong> <a href="https://ko-fi.com/azr" target="_blank" class="support-button">Buy Me a Coffee ☕</a></p>
         </div>
     </div>
     
@@ -110,7 +194,7 @@
         </div>
         <div class="faq">
             <p>❓ How can I support the project?</p>
-            <p>✅ You can support us by subscribing to our YouTube channel <a href="https://www.youtube.com/@azrxc" target="_blank">@azrxc</a> and sharing our tool with other players.</p>
+            <p>✅ You can support us by subscribing to our YouTube channel <a href="https://www.youtube.com/@azrxc" target="_blank">@azrxc</a>, sharing our tool with other players, or supporting us on <a href="https://ko-fi.com/azr" target="_blank">Ko-fi</a>.</p>
         </div>
     </div>
 </body>
