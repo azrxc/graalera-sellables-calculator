@@ -3,33 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sellables to Trochus Calculator</title>
+    <title>Sellables Calculator</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4927938315377514" crossorigin="anonymous"></script>
     <meta name="google-adsense-account" content="ca-pub-4927938315377514">
     <style>
-        /* General Styles */
+        /* General Styles (Synced with First Code) */
         body {
             font-family: 'Poppins', sans-serif;
             text-align: center;
-            background: #FFD700;
-            color: #000;
+            background: #FFD700; /* Yellow background */
+            color: #000; /* Black text */
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
-        h2 {
-            margin-top: 20px;
-            font-size: 2.5rem;
-            color: #000;
+        h1, h2, h3 {
+            color: #000; /* Black headings */
+            margin: 0 0 20px 0;
         }
 
         a {
-            color: #000;
+            color: #000; /* Black links */
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
 
         a:hover {
+            color: #333; /* Darker black on hover */
             text-decoration: underline;
         }
 
@@ -39,9 +41,9 @@
             padding: 20px;
         }
 
-        /* Navigation Menu */
+        /* Navigation Menu (Synced with First Code) */
         nav {
-            background: #000;
+            background: #000; /* Black navigation */
             padding: 10px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
             position: sticky;
@@ -55,7 +57,8 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
         }
 
         nav ul li {
@@ -63,36 +66,44 @@
         }
 
         nav ul li a {
-            color: #FFD700;
+            color: #FFD700; /* Yellow text */
             text-decoration: none;
             font-weight: bold;
-            padding: 10px 15px;
+            padding: 8px 12px;
             border-radius: 25px;
             transition: background 0.3s, transform 0.3s;
+            font-size: 0.9rem;
         }
 
         nav ul li a:hover {
-            background: rgba(255, 215, 0, 0.2);
+            background: rgba(255, 215, 0, 0.2); /* Yellow hover effect */
             transform: scale(1.1);
         }
 
         /* Table Styles */
-        table {
+        .table-container {
+            overflow-x: auto; /* Allow horizontal scrolling on small screens */
             margin: 20px auto;
+        }
+
+        table {
+            width: 100%;
             border-collapse: collapse;
-            background: rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            min-width: 600px; /* Minimum width for table */
         }
 
         th, td {
-            padding: 12px;
+            padding: 10px;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         th {
-            background: #000;
-            color: #FFD700;
+            background: #000; /* Black header */
+            color: #FFD700; /* Yellow text */
             font-weight: bold;
         }
 
@@ -105,214 +116,150 @@
         }
 
         input {
-            width: 80px;
+            width: 60px;
             text-align: center;
-            padding: 8px;
+            padding: 6px;
             border: 1px solid rgba(0, 0, 0, 0.3);
             border-radius: 6px;
             background: rgba(255, 255, 255, 0.1);
             color: #000;
+            font-size: 0.9rem;
         }
 
         /* Totals Container */
         .totals-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* Two columns on mobile */
+            gap: 10px;
             margin-top: 20px;
         }
 
         .total-box {
-            background: rgba(0, 0, 0, 0.1);
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
+            padding: 10px;
             border-radius: 8px;
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .total-box h3 {
             margin: 0;
-            font-size: 18px;
+            font-size: 1rem;
             color: #000;
         }
 
         .total-box span {
-            font-size: 22px;
+            font-size: 1.2rem;
             font-weight: bold;
             color: #000;
         }
 
-        /* Buttons */
+        /* Buttons (Synced with First Code) */
         .guidance-btn, .reset-btn, .save-btn, .load-btn {
-            background: #000;
-            color: #FFD700;
-            padding: 10px 20px;
+            background: #000; /* Black buttons */
+            color: #FFD700; /* Yellow text */
+            padding: 8px 16px;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-top: 10px;
             transition: background 0.3s, transform 0.3s;
+            font-size: 0.9rem;
         }
 
         .guidance-btn:hover, .reset-btn:hover, .save-btn:hover, .load-btn:hover {
-            background: #333;
+            background: #333; /* Darker black on hover */
             transform: scale(1.05);
         }
 
         .reset-btn {
-            background: #FF0000;
+            background: #FF0000; /* Red for reset */
         }
 
         .save-btn {
-            background: #008000;
+            background: #008000; /* Green for save */
         }
 
         .load-btn {
-            background: #FFA500;
+            background: #FFA500; /* Orange for load */
         }
 
         /* Guidance Box */
-        .guidance-box {
-            display: none;
+        .guidance-box, .saved-data, .essay {
             margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            max-width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            font-size: 0.9rem;
         }
 
-        .guidance-box h3 {
-            margin-top: 0;
-            color: #000;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .guidance-box table {
-            width: 100%;
-            margin: 0;
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .guidance-box th {
-            background: #000;
-            color: #FFD700;
-            font-size: 1.1rem;
+        /* Footer (Synced with First Code) */
+        footer {
             padding: 10px;
-        }
-
-        .guidance-box td {
-            padding: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 1rem;
-        }
-
-        .guidance-box tr:last-child td {
-            border-bottom: none;
-        }
-
-        /* Saved Data Section */
-        .saved-data {
-            margin: 20px auto;
-            max-width: 600px;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.1);
-            padding: 20px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.9); /* White with slight transparency */
             border-radius: 12px;
             box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+            margin: 20px;
         }
 
-        .saved-data h3 {
-            margin-top: 0;
-            color: #000;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
+        .footer-links a {
+            font-size: 0.9rem;
         }
 
-        .saved-data ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .saved-data li {
-            padding: 10px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .saved-data li:last-child {
-            border-bottom: none;
-        }
-
-        .saved-data li button {
-            background: #FF0000;
-            color: white;
-            padding: 5px 10px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-        }
-
-        .saved-data li button:hover {
-            background: #CC0000;
-        }
-
-        /* Essay Section */
-        .essay {
-            margin: 20px auto;
-            max-width: 800px;
-            text-align: left;
-            background: rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-        }
-
-        .essay h3 {
-            margin-top: 0;
-            color: #000;
-            font-size: 1.5rem;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .essay p {
-            line-height: 1.6;
-            color: #000;
-        }
-
-        /* Mobile Styles */
+        /* Mobile Styles (Synced with First Code) */
         @media (max-width: 768px) {
             h2 {
-                font-size: 2rem;
+                font-size: 1.8rem;
             }
 
             .container {
                 padding: 15px;
             }
 
-            .totals-container {
-                flex-direction: column;
-                gap: 10px;
+            nav ul li a {
+                padding: 6px 10px;
+                font-size: 0.8rem;
+            }
+
+            .total-box h3 {
+                font-size: 0.9rem;
+            }
+
+            .total-box span {
+                font-size: 1rem;
             }
 
             .guidance-box, .saved-data, .essay {
-                padding: 15px;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h2 {
+                font-size: 1.5rem;
             }
 
-            nav ul {
-                flex-direction: column;
-                gap: 10px;
+            .container {
+                padding: 10px;
             }
 
             nav ul li a {
-                padding: 8px 10px;
+                padding: 5px 8px;
+                font-size: 0.75rem;
+            }
+
+            .total-box h3 {
+                font-size: 0.8rem;
+            }
+
+            .total-box span {
+                font-size: 0.9rem;
+            }
+
+            .guidance-box, .saved-data, .essay {
+                padding: 8px;
             }
         }
     </style>
@@ -330,68 +277,70 @@
     </nav>
 
     <h2>Sellables to Trochus Calculator</h2>
-    <table>
-        <tr>
-            <th>Sellables</th>
-            <th>$3</th>
-            <th>$4</th>
-            <th>$5</th>
-            <th>$6</th>
-            <th>$7</th>
-            <th>$8</th>
-            <th>$10</th>
-        </tr>
-        <tr>
-            <td>Shells</td>
-            <td><input type="number" id="s3" oninput="calculate()"></td>
-            <td></td>
-            <td><input type="number" id="s5" oninput="calculate()"></td>
-            <td><input type="number" id="s6" oninput="calculate()"></td>
-            <td><input type="number" id="s7" oninput="calculate()"></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Minerals</td>
-            <td></td>
-            <td></td>
-            <td><input type="number" id="m5" oninput="calculate()"></td>
-            <td></td>
-            <td><input type="number" id="m7" oninput="calculate()"></td>
-            <td><input type="number" id="m8" oninput="calculate()"></td>
-            <td><input type="number" id="m10" oninput="calculate()"></td>
-        </tr>
-        <tr>
-            <td>Mushrooms</td>
-            <td></td>
-            <td></td>
-            <td><input type="number" id="mu5" oninput="calculate()"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Trash</td>
-            <td></td>
-            <td><input type="number" id="t4" oninput="calculate()"></td>
-            <td><input type="number" id="t5" oninput="calculate()"></td>
-            <td><input type="number" id="t6" oninput="calculate()"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Body Parts</td>
-            <td><input type="number" id="b3" oninput="calculate()"></td>
-            <td><input type="number" id="b4" oninput="calculate()"></td>
-            <td><input type="number" id="b5" oninput="calculate()"></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>Sellables</th>
+                <th>$3</th>
+                <th>$4</th>
+                <th>$5</th>
+                <th>$6</th>
+                <th>$7</th>
+                <th>$8</th>
+                <th>$10</th>
+            </tr>
+            <tr>
+                <td>Shells</td>
+                <td><input type="number" id="s3" oninput="calculate()"></td>
+                <td></td>
+                <td><input type="number" id="s5" oninput="calculate()"></td>
+                <td><input type="number" id="s6" oninput="calculate()"></td>
+                <td><input type="number" id="s7" oninput="calculate()"></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Minerals</td>
+                <td></td>
+                <td></td>
+                <td><input type="number" id="m5" oninput="calculate()"></td>
+                <td></td>
+                <td><input type="number" id="m7" oninput="calculate()"></td>
+                <td><input type="number" id="m8" oninput="calculate()"></td>
+                <td><input type="number" id="m10" oninput="calculate()"></td>
+            </tr>
+            <tr>
+                <td>Mushrooms</td>
+                <td></td>
+                <td></td>
+                <td><input type="number" id="mu5" oninput="calculate()"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Trash</td>
+                <td></td>
+                <td><input type="number" id="t4" oninput="calculate()"></td>
+                <td><input type="number" id="t5" oninput="calculate()"></td>
+                <td><input type="number" id="t6" oninput="calculate()"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>Body Parts</td>
+                <td><input type="number" id="b3" oninput="calculate()"></td>
+                <td><input type="number" id="b4" oninput="calculate()"></td>
+                <td><input type="number" id="b5" oninput="calculate()"></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
     
     <div class="totals-container">
         <div class="total-box">
@@ -419,7 +368,7 @@
     <button class="load-btn" onclick="loadData()">Load Data</button>
     
     <!-- Guidance Box -->
-    <div class="guidance-box" id="guidanceBox">
+    <div class="guidance-box" id="guidanceBox" style="display: none;">
         <h3>Sellables Price Guide</h3>
         <table>
             <tr>
