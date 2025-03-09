@@ -126,6 +126,25 @@
             text-decoration: underline;
         }
 
+        /* Mobile Styles for Navigation Menu */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 6px; /* Smaller gap for mobile */
+            }
+
+            nav ul li a {
+                padding: 6px 8px; /* Smaller padding for mobile */
+                font-size: 0.75rem; /* Smaller font size for mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav ul li a {
+                padding: 5px 6px; /* Even smaller padding for mobile */
+                font-size: 0.7rem; /* Even smaller font size for mobile */
+            }
+        }
+
         /* Mobile Styles */
         @media (max-width: 768px) {
             h1 {
@@ -146,15 +165,6 @@
 
             .tip {
                 padding: 15px;
-            }
-
-            nav ul {
-                gap: 6px; /* Smaller gap for mobile */
-            }
-
-            nav ul li a {
-                padding: 6px 8px; /* Smaller padding for mobile */
-                font-size: 0.75rem; /* Smaller font size for mobile */
             }
 
             .btn {
@@ -186,11 +196,6 @@
 
             .tip {
                 padding: 10px;
-            }
-
-            nav ul li a {
-                padding: 5px 8px;
-                font-size: 0.75rem;
             }
 
             .btn {
