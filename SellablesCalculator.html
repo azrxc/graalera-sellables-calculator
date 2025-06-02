@@ -481,15 +481,6 @@
     </footer>
 
     <script>
-        // Initialize user data
-        let userData = JSON.parse(localStorage.getItem("userData")) || { name: null };
-
-        // Ask for user's name if not already set
-        if (!userData.name) {
-            userData.name = prompt("Enter your name:");
-            localStorage.setItem("userData", JSON.stringify(userData));
-        }
-
         // Calculate function
         function calculate() {
             let prices = { 3: ["s3", "b3"], 4: ["t4", "b4"], 5: ["s5", "m5", "mu5", "t5", "b5"], 6: ["s6", "t6"], 7: ["s7", "m7"], 8: ["m8"], 10: ["m10"] };
@@ -635,6 +626,15 @@
 
         // Initial display of saved data
         displaySavedData();
+    </script>
+    <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+    <script>
+      kofiWidgetOverlay.draw('azr', {
+        'type': 'floating-chat',
+        'floating-chat.donateButton.text': 'Support Me',
+        'floating-chat.donateButton.background-color': '#000',
+        'floating-chat.donateButton.text-color': '#FFD700;'
+      });
     </script>
 </body>
 </html>
